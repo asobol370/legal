@@ -3,60 +3,233 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bogatyrev Marketing Team</title>
+<title>Bogatyrev Marketing Team — Performance-маркетинг</title>
+<meta name="description" content="Google Ads та Meta Ads для e-commerce та послуг. Понад 200 000$ рекламного бюджету, середній ROAS 650%, lifetime клієнтів від 1 року.">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --muted: #666;
+    --border: #e5e5e5;
+    --border-hover: #d0d0d0;
+    --surface: #f7f7f7;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --tag-bg: #eef2ff;
+    --tag-fg: #4338ca;
+  }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #ffffff;
-    color: #1a1a1a;
+    background: var(--bg);
+    color: var(--fg);
     line-height: 1.6;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
+    -webkit-font-smoothing: antialiased;
   }
-  .card {
-    max-width: 560px;
-    width: 100%;
-    background: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 12px;
-    padding: 48px 40px;
-  }
-  h1 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
-  .subtitle { color: #666; font-size: 15px; margin-bottom: 32px; }
-  .links { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
-  .links a {
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* HERO */
+  .hero { padding: 80px 0 48px; }
+  .hero-brand { font-size: 15px; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.01em; }
+  .hero h1 { font-size: 42px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.15; }
+  .hero .subtitle { font-size: 18px; color: #333; max-width: 700px; margin-bottom: 24px; }
+  .hero .stats { display: flex; flex-wrap: wrap; gap: 32px; padding: 20px 24px; background: var(--surface); border-radius: 12px; margin-bottom: 24px; }
+  .stat-value { font-size: 24px; font-weight: 700; }
+  .stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .services-block { padding: 20px 24px; background: var(--surface); border-left: 3px solid var(--accent); border-radius: 4px; margin-bottom: 24px; font-style: italic; color: #333; }
+  .partner-badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px; font-size: 13px; color: var(--muted); }
+  .partner-badge svg { flex-shrink: 0; }
+
+  /* CASES */
+  .section { padding: 48px 0; border-top: 1px solid var(--border); }
+  .section-header { margin-bottom: 32px; }
+  .section-title { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
+  .section-note { font-size: 14px; color: var(--muted); max-width: 640px; }
+  .cases { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .case-card {
     display: block;
-    padding: 16px 20px;
-    background: #f7f7f7;
-    border: 1px solid #e5e5e5;
-    border-radius: 8px;
-    color: #1a1a1a;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
     text-decoration: none;
-    font-weight: 500;
-    transition: background 0.15s;
+    color: inherit;
+    transition: border-color 0.15s, transform 0.15s;
   }
-  .links a:hover { background: #efefef; }
-  .contact { font-size: 14px; color: #666; padding-top: 24px; border-top: 1px solid #e5e5e5; }
-  .contact strong { color: #1a1a1a; }
-  .contact a { color: #2563eb; text-decoration: none; }
+  .case-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+  .case-title { font-size: 17px; font-weight: 600; line-height: 1.4; margin-bottom: 16px; color: var(--fg); }
+  .case-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { display: inline-block; padding: 3px 10px; background: var(--tag-bg); color: var(--tag-fg); border-radius: 999px; font-size: 12px; font-weight: 500; }
+  .tag.tag-geo { background: #fef3c7; color: #92400e; }
+  .tag.tag-service { background: #dcfce7; color: #166534; }
+  .tag.tag-term { background: #e0e7ff; color: #3730a3; }
+
+  /* CTA */
+  .cta { padding: 48px 0; text-align: center; border-top: 1px solid var(--border); }
+  .cta h2 { font-size: 24px; margin-bottom: 12px; }
+  .cta p { color: var(--muted); margin-bottom: 20px; font-size: 16px; }
+  .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: background 0.15s; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-secondary { background: var(--surface); color: var(--fg); border: 1px solid var(--border); }
+  .btn-secondary:hover { background: #efefef; }
+
+  /* FOOTER */
+  footer { padding: 32px 0 48px; border-top: 1px solid var(--border); font-size: 14px; color: var(--muted); }
+  .footer-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-links a { color: var(--muted); text-decoration: none; }
+  .footer-links a:hover { color: var(--fg); text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 48px 0 32px; }
+    .hero h1 { font-size: 32px; }
+    .hero .stats { gap: 20px; }
+    .cases { grid-template-columns: 1fr; }
+    .section { padding: 32px 0; }
+  }
 </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Bogatyrev Marketing Team</h1>
-    <p class="subtitle">Performance-маркетинг · Google Ads &amp; Meta Ads · з 2019</p>
-    <div class="links">
-      <a href="./privacy.html">Політика конфіденційності</a>
-      <a href="./terms.html">Умови користування</a>
-    </div>
-    <div class="contact">
-      <p><strong>Контакт:</strong> Vlad Bogatyrev</p>
-      <p><strong>Email:</strong> <a href="mailto:asobol370@gmail.com">asobol370@gmail.com</a></p>
-    </div>
-  </div>
+  <main class="container">
+
+    <section class="hero">
+      <div class="hero-brand">Bogatyrev Marketing Team</div>
+      <h1>Performance-маркетинг для e-commerce та послуг</h1>
+      <p class="subtitle">Google Ads (Search, Performance Max, Shopping) та Meta Ads. Налаштування аналітики, автоматизація звітності для команд з кількома проектами. З 2019 року.</p>
+
+      <div class="stats">
+        <div>
+          <div class="stat-value">200 000 $+</div>
+          <div class="stat-label">рекламний бюджет за рік</div>
+        </div>
+        <div>
+          <div class="stat-value">650%</div>
+          <div class="stat-label">середній ROAS</div>
+        </div>
+        <div>
+          <div class="stat-value">1+ рік</div>
+          <div class="stat-label">lifetime клієнтів</div>
+        </div>
+      </div>
+
+      <div class="services-block">
+        Performance-маркетинг для e-commerce та послуг: Google Ads (Search, Performance Max, Shopping), Meta Ads, налаштування аналітики та автоматизація звітності.
+      </div>
+
+      <div style="margin-top: 20px;">
+        <span class="partner-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Google Partner certified
+        </span>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Кейси</h2>
+        <p class="section-note">Тут представлена частина кейсів (які ми встигли оформити, але по факту їх набагато більше). Якщо не знайшов своєї ніші — напиши в <a href="https://t.me/vlad_bo12" style="color:var(--accent);">Telegram</a> або <a href="https://www.instagram.com/vladbogatyrev_/" style="color:var(--accent);">Instagram</a>, щоб дізнатися, чим ми можемо бути корисними для твого бізнесу.</p>
+      </div>
+
+      <div class="cases">
+        <a class="case-card" href="https://bogatyrev-marketing.notion.site/17bc4e7bc24e802e8739f32927e2a2f4" target="_blank" rel="noopener">
+          <div class="case-title">E-commerce · 1 815 940 грн для веломагазину</div>
+          <div class="case-meta">
+            <span class="tag">Інтернет-магазин</span>
+            <span class="tag tag-geo">Україна</span>
+            <span class="tag tag-service">Google Ads</span>
+            <span class="tag tag-term">3 місяці</span>
+          </div>
+        </a>
+
+        <a class="case-card" href="https://bogatyrev-marketing.notion.site/17bc4e7bc24e803db30aecd7617c82c3" target="_blank" rel="noopener">
+          <div class="case-title">Інтернет-магазин сезонних товарів</div>
+          <div class="case-meta">
+            <span class="tag">Інтернет-магазин</span>
+            <span class="tag tag-geo">Україна</span>
+            <span class="tag tag-service">Google Ads</span>
+            <span class="tag tag-term">до 3 місяців</span>
+          </div>
+        </a>
+
+        <a class="case-card" href="https://bogatyrev-marketing.notion.site/17bc4e7bc24e80c2beedebd76cf5b5ed" target="_blank" rel="noopener">
+          <div class="case-title">+303 000 грн для B2B при вкладених 1 100$ у рекламу</div>
+          <div class="case-meta">
+            <span class="tag">B2B послуги</span>
+            <span class="tag tag-geo">Україна</span>
+            <span class="tag tag-service">Google Ads</span>
+            <span class="tag tag-term">до 3 місяців</span>
+          </div>
+        </a>
+
+        <a class="case-card" href="https://bogatyrev-marketing.notion.site/17bc4e7bc24e81a18cf2e9baa64968cc" target="_blank" rel="noopener">
+          <div class="case-title">2 449 клієнтів в інтернет-магазин з ROAS 788%</div>
+          <div class="case-meta">
+            <span class="tag">Інтернет-магазин</span>
+            <span class="tag tag-geo">Україна</span>
+            <span class="tag tag-service">Google Ads</span>
+            <span class="tag tag-term">5+ років</span>
+          </div>
+        </a>
+
+        <a class="case-card" href="https://bogatyrev-marketing.notion.site/1a4c4e7bc24e805f89acdfca4ac81158" target="_blank" rel="noopener">
+          <div class="case-title">730 лідів в автосервіс з Варшави по ~20$</div>
+          <div class="case-meta">
+            <span class="tag">Послуги</span>
+            <span class="tag tag-geo">Польща</span>
+            <span class="tag tag-service">Google Ads</span>
+            <span class="tag tag-term">3 місяці</span>
+          </div>
+        </a>
+
+        <a class="case-card" href="https://bogatyrev-marketing.notion.site/1a6c4e7bc24e808ca63aecf155abea70" target="_blank" rel="noopener">
+          <div class="case-title">1 000 000+ грн для інсташопу жіночого одягу</div>
+          <div class="case-meta">
+            <span class="tag">Інстаграм-магазин</span>
+            <span class="tag tag-geo">Україна</span>
+            <span class="tag tag-service">Meta Ads</span>
+            <span class="tag tag-term">2+ роки</span>
+          </div>
+        </a>
+
+        <a class="case-card" href="https://bogatyrev-marketing.notion.site/1a7c4e7bc24e809d885accd61bb3a55a" target="_blank" rel="noopener">
+          <div class="case-title">8 499 $ за 21 день рекламної кампанії для бренду одягу</div>
+          <div class="case-meta">
+            <span class="tag">Бренд одягу</span>
+            <span class="tag tag-geo">Україна</span>
+            <span class="tag tag-service">Meta Ads</span>
+            <span class="tag tag-term">1+ рік</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>Хочеш обговорити свій проєкт?</h2>
+      <p>Напиши в Telegram або Instagram — розповім, чим можемо допомогти.</p>
+      <div class="cta-buttons">
+        <a class="btn btn-primary" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">Telegram</a>
+        <a class="btn btn-secondary" href="https://www.instagram.com/vladbogatyrev_/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-secondary" href="mailto:asobol370@gmail.com">Email</a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-row">
+        <div>© 2019–2026 Bogatyrev Marketing Team · Google Partner certified</div>
+        <div class="footer-links">
+          <a href="./privacy.html">Політика конфіденційності</a>
+          <a href="./terms.html">Умови користування</a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
 </body>
 </html>
