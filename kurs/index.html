@@ -126,6 +126,23 @@ h1{font-size:27px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
 .tool span{font-size:12.5px;color:#8d857d;line-height:1.5;display:block}
 .tool.dis{opacity:.45}
 
+.hwc{display:flex;gap:13px;align-items:flex-start;background:#151312;border:1px solid #292420;
+     border-radius:12px;padding:15px 17px;margin-bottom:9px;transition:border-color .15s,opacity .2s}
+.hwc:hover{border-color:#3d352e}
+.hwc.on{border-color:#2c4a35;opacity:.72}
+.hwc .chk{flex:0 0 21px;height:21px;border-radius:6px;border:2px solid #45454f;margin-top:2px;
+          position:relative;cursor:pointer;transition:.15s}
+.hwc .chk:hover{border-color:#6f675f}
+.hwc.on .chk{background:#5aa96f;border-color:#5aa96f}
+.hwc.on .chk::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;
+                    border:solid #0b0b0b;border-width:0 2px 2px 0;transform:rotate(42deg)}
+.hwt{flex:1;min-width:0}
+.hwt a{font-size:15px;font-weight:700;display:block;line-height:1.35}
+.hwt span{font-size:12.5px;color:#8d857d;display:block;margin-top:4px;line-height:1.5}
+.hwb{flex:0 0 auto;align-self:center;font-size:11px;padding:3px 9px;border-radius:6px;
+     background:#121b15;border:1px solid #2c4a35;color:#8fd0a4;white-space:nowrap}
+.hwb.wait{background:#1d1712;border-color:#584029;color:#c99a6a}
+@media(max-width:560px){.hwb{display:none}}
 .sub{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6f675f;margin:16px 0 8px;font-weight:700}
 .foot{font-size:12.5px;color:#6f675f;text-align:center;margin-top:26px;line-height:1.7}
 @media(max-width:560px){
@@ -297,7 +314,9 @@ var L=[
 ];
 
 var HWS=[
- {t:"HOME WORK — Модуль 05",u:NO+"3abc4e7bc24e816c9073ed9fb399e26a",
+ {id:"04",t:"HOME WORK — Модуль 04",u:NO+"3a5c4e7bc24e81c69504d8d4d8986cd5",
+  d:"Аудит сайту · портрет ЦА · конкуренти · Go/No-Go · офер · план запуску"},
+ {id:"05",t:"HOME WORK — Модуль 05",u:NO+"3abc4e7bc24e816c9073ed9fb399e26a",
   d:"Капстоун: зібрати Search-кампанію від А до Я — семантика, мінуси, RSA, стратегія, збірка на паузі"}
 ];
 var TG=["ppc_expert_v2","ppc_chuhui","k2promocompany","notatkyproppc","ppc_analytics",
@@ -421,6 +440,11 @@ function search(qs){
 var KEY="tg_catalog_seen_v1", seen={};
 try{seen=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(seen))}catch(e){}}
+
+var HKEY="tg_catalog_hw_v1", hwDone={};
+try{hwDone=JSON.parse(localStorage.getItem(HKEY)||"{}")}catch(e){}
+function saveHw(){try{localStorage.setItem(HKEY,JSON.stringify(hwDone))}catch(e){}}
+function hwCount(){var n=0;HWS.forEach(function(x){if(hwDone[x.id])n++});return n}
 function $(i){return document.getElementById(i)}
 function esc(s){return String(s||"").replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 
@@ -488,7 +512,8 @@ function renderFolders(){
      '<div class="cnt">'+TOOLS.length+' інструменти — калькулятори, чек-листи, конструктор</div></div>';
   h+='<div class="fold alt" data-open="hw"><span class="ic">'+ICONS.hw+'</span>'+
      '<div class="mn">Практика</div><div class="tt">Домашні завдання</div>'+
-     '<div class="cnt">Капстоун Модуля 05 — збірка Search-кампанії</div></div>';
+     '<div class="cnt">Здано '+hwCount()+' з '+HWS.length+
+     (hwCount()<HWS.length?' — є незакриті':' — усе закрито')+'</div></div>';
   h+='<div class="fold alt" data-open="chan"><span class="ic">'+ICONS.ch+'</span>'+
      '<div class="mn">Ресурси</div><div class="tt">Корисні канали по PPC</div>'+
      '<div class="cnt">'+(TG.length+YTCH.length)+' джерел — Telegram і YouTube</div></div>';
@@ -530,8 +555,19 @@ function renderList(kind){
   if(kind==="tools"){
     h+='<div class="mod"><div class="mhd"><b><span class="hic">'+ICONS.t+'</span> Інтерактивні інструменти</b></div>'+cards(TOOLS)+'</div>';
   } else if(kind==="hw"){
-    h+='<div class="mod"><div class="mhd"><b><span class="hic">'+ICONS.hw+'</span> Домашні завдання</b></div>'+cards(HWS)+
-       '<div class="lead" style="margin-top:10px">Здаєш у чат «ДЗ» з підписом «Модуль X — ДЗ N». Перевіряю кожне особисто.</div></div>';
+    h+='<div class="mod"><div class="mhd"><b><span class="hic">'+ICONS.hw+'</span> Домашні завдання</b>'+
+       '<span class="c">'+hwCount()+' / '+HWS.length+'</span></div>'+
+       '<div class="lead" style="margin-bottom:12px">Здав — постав галочку, щоб не загубитись. Позначка твоя особиста, зберігається в браузері.</div>';
+    HWS.forEach(function(x){
+      var d=!!hwDone[x.id];
+      h+='<div class="hwc'+(d?" on":"")+'">'+
+         '<div class="chk" data-hw="'+x.id+'"></div>'+
+         '<div class="hwt"><a href="'+x.u+'" target="_blank" rel="noopener">'+esc(x.t)+'</a>'+
+         '<span>'+esc(x.d)+'</span></div>'+
+         (d?'<span class="hwb">Здано</span>':'<span class="hwb wait">Не здано</span>')+
+         '</div>';
+    });
+    h+='<div class="lead" style="margin-top:12px">Здаєш у чат «ДЗ» з підписом «Модуль X — ДЗ N». Перевіряю кожне особисто й даю фідбек.</div></div>';
   } else if(kind==="chan"){
     h+='<div class="mod"><div class="mhd"><b><span class="hic">'+ICONS.ch+'</span> Корисні канали по PPC</b></div>'+
        '<div class="lead" style="margin-bottom:12px">Ті, що читаю сам. Не для того, щоб підписатись на все — обери два-три і читай регулярно.</div>'+
@@ -595,12 +631,14 @@ document.addEventListener("click",function(e){
     if($("q").value){ $("q").value=""; doSearch() }
     renderCat(); window.scrollTo({top:0,behavior:"smooth"}); return;
   }
+  var hw=e.target.closest("[data-hw]");
+  if(hw){ var id=hw.getAttribute("data-hw"); if(hwDone[id])delete hwDone[id];else hwDone[id]=1; saveHw(); renderCat(); return }
   var s=e.target.closest("[data-seen]");
   if(s){ var n=s.getAttribute("data-seen"); if(seen[n])delete seen[n];else seen[n]=1; save(); renderCat(); return }
   var hn=e.target.closest("[data-h]");
   if(hn){ $("q").value=hn.getAttribute("data-h"); doSearch(); window.scrollTo({top:0,behavior:"smooth"}); return }
   if(e.target.closest("#clr")){ $("q").value=""; doSearch(); $("q").focus(); return }
-  if(e.target.closest("#reset")){ if(confirm("Скинути всі позначки «переглянув»?")){ seen={}; save(); renderCat() } return }
+  if(e.target.closest("#reset")){ if(confirm("Скинути всі позначки — і переглянуті уроки, і здані ДЗ?")){ seen={}; hwDone={}; save(); saveHw(); renderCat() } return }
 });
 $("q").addEventListener("input",function(){ clearTimeout(window._s); window._s=setTimeout(doSearch,180) });
 
