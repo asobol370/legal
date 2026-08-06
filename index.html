@@ -3,8 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bogatyrev Marketing Team — Performance-маркетинг</title>
+<title>Bohatyrov Marketing — Performance-маркетинг</title>
 <meta name="description" content="Google Ads та Meta Ads для e-commerce та послуг. Понад 200 000$ рекламного бюджету, середній ROAS 650%, lifetime клієнтів від 1 року.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -29,10 +34,31 @@
   .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
   /* HERO */
-  .hero { padding: 80px 0 48px; }
-  .hero-brand { font-size: 15px; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.01em; }
-  .hero h1 { font-size: 42px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.15; }
-  .hero .subtitle { font-size: 18px; color: #333; max-width: 700px; margin-bottom: 24px; }
+  .hero { padding: 32px 0 48px; }
+  .hero-logo { display: block; width: 180px; height: auto; margin-bottom: 24px; }
+  .hero-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 48px;
+    align-items: start;
+    margin-bottom: 40px;
+  }
+  .hero-text { display: flex; flex-direction: column; gap: 20px; }
+  .hero-photo-wrap { position: relative; width: 300px; justify-self: end; }
+  .hero-photo { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 28px rgba(0,0,0,0.10); }
+  .hero-partner {
+    position: absolute; bottom: -22px; right: -22px;
+    width: 110px; height: 110px; padding: 8px;
+    background: #fff; border-radius: 14px;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.15);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    transition: transform 0.15s;
+  }
+  .hero-partner:hover { transform: scale(1.04); }
+  .hero-partner img { width: 100%; height: 100%; display: block; }
+  .hero h1 { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; margin: 0; line-height: 1.15; }
+  .hero .subtitle { font-size: 18px; color: #333; margin: 0; }
   .hero .stats { display: flex; flex-wrap: wrap; gap: 32px; padding: 20px 24px; background: var(--surface); border-radius: 12px; margin-bottom: 24px; }
   .stat-value { font-size: 24px; font-weight: 700; }
   .stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
@@ -82,9 +108,13 @@
   .footer-links a { color: var(--muted); text-decoration: none; }
   .footer-links a:hover { color: var(--fg); text-decoration: underline; }
 
-  @media (max-width: 600px) {
-    .hero { padding: 48px 0 32px; }
-    .hero h1 { font-size: 32px; }
+  @media (max-width: 720px) {
+    .hero { padding: 32px 0 32px; }
+    .hero-logo { width: 140px; margin-bottom: 20px; }
+    .hero-body { grid-template-columns: 1fr; gap: 32px; margin-bottom: 32px; }
+    .hero-photo-wrap { width: 220px; margin: 0 auto; justify-self: center; }
+    .hero-partner { width: 90px; height: 90px; bottom: -18px; right: -18px; }
+    .hero h1 { font-size: 30px; }
     .hero .stats { gap: 20px; }
     .cases { grid-template-columns: 1fr; }
     .section { padding: 32px 0; }
@@ -95,9 +125,19 @@
   <main class="container">
 
     <section class="hero">
-      <div class="hero-brand">Bogatyrev Marketing Team</div>
-      <h1>Performance-маркетинг для e-commerce та послуг</h1>
-      <p class="subtitle">Google Ads (Search, Performance Max, Shopping) та Meta Ads. Налаштування аналітики, автоматизація звітності для команд з кількома проектами. З 2019 року.</p>
+      <div class="hero-body">
+        <div class="hero-text">
+          <img class="hero-logo" src="assets/logo-wordmark.png" alt="Bohatyrov Marketing">
+          <h1>Performance-маркетинг для e-commerce та послуг</h1>
+          <p class="subtitle">Google Ads (Search, Performance Max, Shopping) та Meta Ads. Налаштування аналітики, автоматизація звітності.<br>З 2019 року.</p>
+        </div>
+        <div class="hero-photo-wrap">
+          <img class="hero-photo" src="assets/portrait.jpg" alt="Vlad Bohatyrov">
+          <a class="hero-partner" href="https://www.google.com/partners/agency?id=2300223752" target="_blank" rel="noopener" title="Google Partner">
+            <img src="https://www.gstatic.com/partners/badge/images/2026/PartnerBadgeClickable.svg" alt="Google Partner">
+          </a>
+        </div>
+      </div>
 
       <div class="stats">
         <div>
@@ -118,11 +158,6 @@
         Performance-маркетинг для e-commerce та послуг: Google Ads (Search, Performance Max, Shopping), Meta Ads, налаштування аналітики та автоматизація звітності.
       </div>
 
-      <div style="margin-top: 20px;">
-        <a href="https://www.google.com/partners/agency?id=2300223752" target="_blank" rel="noopener" style="display: inline-block; text-decoration: none;">
-          <img src="https://www.gstatic.com/partners/badge/images/2026/PartnerBadgeClickable.svg" alt="Google Partner" width="120" height="120" style="display: block;">
-        </a>
-      </div>
     </section>
 
     <section class="section">
@@ -216,7 +251,7 @@
 
     <footer>
       <div class="footer-row">
-        <div>© 2019–2026 Bogatyrev Marketing Team · Google Partner certified</div>
+        <div>© 2019–2026 Bohatyrov Marketing · Google Partner certified</div>
         <div class="footer-links">
           <a href="./privacy.html">Політика конфіденційності</a>
           <a href="./terms.html">Умови користування</a>
