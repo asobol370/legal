@@ -675,7 +675,8 @@ document.addEventListener("click",function(e){
   var op=e.target.closest("[data-open]");
   if(op){
     var v=op.getAttribute("data-open");
-    view=(v==="home")?null:((v==="tools"||v==="hw"||v==="chan")?v:+v);
+    /* число — це модуль; будь-який інший рядок — назва розділу (tools/hw/chan/docs) */
+    view=(v==="home")?null:(/^\d+$/.test(v)?+v:v);
     if($("q").value){ $("q").value=""; doSearch() }
     renderCat(); window.scrollTo({top:0,behavior:"smooth"}); return;
   }
