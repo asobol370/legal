@@ -350,6 +350,19 @@ var TOOLS=[
   k:"конструктор тз кампанії сегментація автоматична розбити ключі rsa лічильник символів"}
 ];
 
+/* Мої робочі документи — приклади форми, а не джерело цифр */
+var DOCS=[
+ {t:"📘 Медіаплан на старт — Google Ads для e-com",u:NO+"3bcc4e7bc24e81529b55d7f393ea2d49",
+  d:"Що віддаєш клієнту ДО запуску: структура кампаній, прогноз показів/кліків/CPC, зведена таблиця бюджету, KPI",
+  k:"медіаплан план бюджет прогноз клієнту старт запуск кава"},
+ {t:"📗 Стратегія масштабування — Google + Meta + Email",u:NO+"3bcc4e7bc24e813692e8c076e79245a0",
+  d:"Акаунт уже працює, треба вирости втричі: три сценарії ROAS, перехід бюджетів «поточне → цільове»",
+  k:"масштабування стратегія роас сценарії зростання бюджету"},
+ {t:"📙 Кросканальна стратегія трафіку — приклад формату",u:NO+"3bcc4e7bc24e81ac9008f4c374b326f2",
+  d:"Інший жанр: не розрахунок, а рамка домовленостей — горизонт тесту, процедура рішень, розділення бюджетів",
+  k:"стратегія трафіку воронка мета ремаркетинг email формат документа"}
+];
+
 /* ============ ПОШУК ============ */
 var SYN=[
  ["ндс","пдв","vat","налог","податок"],
@@ -420,10 +433,13 @@ function search(qs){
 
   var all=L.map(function(x){return{kind:"les",o:x,txt:(x.t+" "+(x.k||"")+" "+(x.g||[]).map(function(g){return g[0]}).join(" ")).toLowerCase()}})
     .concat(TOOLS.map(function(x){return{kind:"tool",o:x,txt:(x.t+" "+x.d+" "+(x.k||"")).toLowerCase()}}))
+    .concat(DOCS.map(function(x){return{kind:"doc",o:x,txt:(x.t+" "+x.d+" "+(x.k||"")).toLowerCase()}}))
     .concat([{kind:"nav",o:{t:"Корисні канали по PPC",d:"Telegram-канали і YouTube, які варто читати",v:"chan"},
               txt:"канали чати телеграм telegram youtube ютуб блоги підписки читати ppc спільнота"},
              {kind:"nav",o:{t:"Домашні завдання",d:"Капстоун Модуля 05",v:"hw"},
-              txt:"дз домашка домашнє завдання капстоун здати практика"}]);
+              txt:"дз домашка домашнє завдання капстоун здати практика"},
+             {kind:"nav",o:{t:"Мої робочі документи",d:"Медіаплан, стратегія масштабування, кросканальна стратегія — приклади форми",v:"docs"},
+              txt:"медіаплан медиаплан план бюджету приклад документа шаблон клієнту комерційна пропозиція стратегія масштабування розрахунок"}]);
 
   var hits=[];
   all.forEach(function(e){
@@ -499,6 +515,8 @@ var ICONS={
  hw:ico('<path d="M16.4 3.4a2.1 2.1 0 0 1 3 3L7.4 18.4l-4 1 1-4z"/><path d="M14.4 5.4l3 3"/>'),
  /* корисні канали — сигнал */
  ch:ico('<circle cx="12" cy="12" r="2.2"/><path d="M8.4 8.4a5 5 0 0 0 0 7.2M15.6 8.4a5 5 0 0 1 0 7.2"/><path d="M5.7 5.7a9 9 0 0 0 0 12.6M18.3 5.7a9 9 0 0 1 0 12.6"/>'),
+ /* робочі документи — аркуш із рядками */
+ dc:ico('<path d="M13.4 3.2H7.2A2 2 0 0 0 5.2 5.2v13.6a2 2 0 0 0 2 2h9.6a2 2 0 0 0 2-2V8.6z"/><path d="M13.4 3.2v5.4h5.4"/><path d="M8.6 13h6.8M8.6 16.4h4.6"/>'),
  /* інструменти — повзунки */
  t:ico('<path d="M3.5 7h9M18 7h2.5M3.5 12h3M11.5 12h9M3.5 17h9M18 17h2.5"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="12" r="2.2"/><circle cx="15" cy="17" r="2.2"/>')
 };
@@ -535,6 +553,9 @@ function renderFolders(){
      '<div class="mn">Практика</div><div class="tt">Домашні завдання</div>'+
      '<div class="cnt">Здано '+hwCount()+' з '+HWS.length+
      (hwCount()<HWS.length?' — є незакриті':' — усе закрито')+'</div></div>';
+  h+='<div class="fold alt" data-open="docs"><span class="ic">'+ICONS.dc+'</span>'+
+     '<div class="mn">Ресурси</div><div class="tt">Мої робочі документи</div>'+
+     '<div class="cnt">'+DOCS.length+' приклади — медіаплан, масштабування, стратегія</div></div>';
   h+='<div class="fold alt" data-open="chan"><span class="ic">'+ICONS.ch+'</span>'+
      '<div class="mn">Ресурси</div><div class="tt">Корисні канали по PPC</div>'+
      '<div class="cnt">'+(TG.length+YTCH.length)+' джерел — Telegram і YouTube</div></div>';
@@ -589,6 +610,11 @@ function renderList(kind){
          '</div>';
     });
     h+='<div class="lead" style="margin-top:12px">Здаєш у чат «ДЗ» з підписом «Модуль X — ДЗ N». Перевіряю кожне особисто й даю фідбек.</div></div>';
+  } else if(kind==="docs"){
+    h+='<div class="mod"><div class="mhd"><b><span class="hic">'+ICONS.dc+'</span> Мої робочі документи</b>'+
+       '<span class="c">'+DOCS.length+'</span></div>'+
+       '<div class="lead" style="margin-bottom:12px">Три реальні документи, які я віддавав клієнтам. Дивись <b>не на цифри, а на форму</b>: з яких блоків складається документ і в якому порядку вони йдуть. Цифри прив’язані до конкретного бізнесу — у тебе будуть свої, а структура переноситься майже без змін. Назви клієнтів прибрано.</div>'+
+       cards(DOCS)+'</div>';
   } else if(kind==="chan"){
     h+='<div class="mod"><div class="mhd"><b><span class="hic">'+ICONS.ch+'</span> Корисні канали по PPC</b></div>'+
        '<div class="lead" style="margin-bottom:12px">Ті, що читаю сам. Не для того, щоб підписатись на все — обери два-три і читай регулярно.</div>'+
@@ -603,7 +629,7 @@ function renderList(kind){
 function renderCat(){
   progress();
   if(view===null) renderFolders();
-  else if(view==="tools"||view==="hw"||view==="chan") renderList(view);
+  else if(view==="tools"||view==="hw"||view==="chan"||view==="docs") renderList(view);
   else renderModule(view);
 }
 var HINTS=["як прибрати ПДВ","яку стратегію ставок","не працюють конверсії","заголовки в RSA","мінус-слова","що таке GCLID","структура акаунта","показник якості","збір семантики","бюджет кампанії"];
@@ -636,7 +662,8 @@ function doSearch(){
          '<div class="why">'+esc(o.d)+'</div>'+
          '<div class="links"><button class="lk lk-t" data-open="'+o.v+'">Відкрити →</button></div></div>';
     } else {
-      h+='<div class="hit"><div class="top"><span class="ttl">'+esc(o.t)+'</span><span class="mod">інструмент</span></div>'+
+      h+='<div class="hit"><div class="top"><span class="ttl">'+esc(o.t)+'</span><span class="mod">'+
+         (x.e.kind==="doc"?"документ":"інструмент")+'</span></div>'+
          '<div class="why">'+esc(o.d)+'</div>'+
          '<div class="links"><a class="lk lk-t" href="'+o.u+'" target="_blank" rel="noopener">Відкрити →</a></div></div>';
     }
