@@ -197,16 +197,31 @@
     }
     .hero-offer { position: static; }
     .brand-line { display: none; }
-    .offer-text { position: relative; left: 0; top: 0; z-index: 2; padding: 84vw 16px 0; text-align: center; }
+    .offer-text { position: relative; left: 0; top: 0; z-index: 2; padding: 81vw 16px 0; text-align: center; }
     .offer-text h1 { font-size: max(20px, 5.75vw); line-height: 1.33; letter-spacing: .03em; text-shadow: 0 2px 26px rgba(0,0,0,.65); }
     .hero-bottom { display: block; position: relative; z-index: 2; }
-    .hb-right { display: block; padding: 8.5vw 0 0; }
+    .hb-right { display: block; padding: 4.5vw 0 0; }
     body.v3 .offer-sub { position: static; max-width: 84vw; margin: 5vw auto 0; text-align: center;
       font-size: max(12px, 2.45vw); line-height: 1.6; }
     .fly-btn { position: static; }
     .btn-practice { width: 32.5vw; margin: 0 0 0 18.4vw; rotate: none; }
     .btn-book { width: 36.2vw; margin: -30.3vw 0 0 42.7vw; }
-    .hero-meta { display: none; }
+    .divider-horizon { position: relative; height: 150px; overflow: hidden; background: #060606; }
+  .divider-horizon::before {
+    content: ''; position: absolute; left: -18%; right: -18%; top: 52px; height: 340px;
+    border-radius: 50% 50% 0 0 / 95% 95% 0 0;
+    background: #060606;
+    box-shadow: 0 -1px 0 rgba(255, 150, 70, .95),
+                0 -7px 22px rgba(255, 95, 32, .5),
+                0 -28px 90px rgba(255, 70, 20, .28),
+                inset 0 3px 30px rgba(255, 120, 50, .22);
+  }
+  @media (max-width: 900px) {
+    .divider-horizon { height: 84px; }
+    .divider-horizon::before { top: 30px; height: 200px; left: -30%; right: -30%; }
+  }
+
+  .hero-meta { display: none; }
   body.v3 .hero-meta { display: block; position: absolute; top: 8vh; right: 4vw; z-index: 2; text-align: right; }
   .hm-item { padding: 11px 0; }
   .hm-item:first-child { border-bottom: 1px solid rgba(255,255,255,.14); }
@@ -224,6 +239,21 @@
     .hs-label { font-size: 8.5px; line-height: 1.35; }
     section { padding: 44px 0; }
     .glow { display: none; }
+  }
+
+  .divider-horizon { position: relative; height: 150px; overflow: hidden; background: #060606; }
+  .divider-horizon::before {
+    content: ''; position: absolute; left: -18%; right: -18%; top: 52px; height: 340px;
+    border-radius: 50% 50% 0 0 / 95% 95% 0 0;
+    background: #060606;
+    box-shadow: 0 -1px 0 rgba(255, 150, 70, .95),
+                0 -7px 22px rgba(255, 95, 32, .5),
+                0 -28px 90px rgba(255, 70, 20, .28),
+                inset 0 3px 30px rgba(255, 120, 50, .22);
+  }
+  @media (max-width: 900px) {
+    .divider-horizon { height: 84px; }
+    .divider-horizon::before { top: 30px; height: 200px; left: -30%; right: -30%; }
   }
 
   .hero-meta { display: none; }
@@ -543,6 +573,8 @@
     <span class="cta-bottom"><span class="seats-line">3 з 7 місць вільні</span><span class="cta-arrow">→</span></span>
   </a>
 </header>
+
+<div class="divider-horizon" aria-hidden="true"></div>
 
 
 
