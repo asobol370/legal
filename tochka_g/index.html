@@ -164,6 +164,15 @@
   .hero-bottom, .hb-right { display: contents; }
   .offer-sub { position: absolute; left: 3.3vw; top: calc(33% + 14.5vw + 6vh); z-index: 2; max-width: 44vw; font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: clamp(13px, 1.35vw, 29px); line-height: 1.5; color: rgba(255,255,255,.95); display: none; }
   body.v3 .offer-sub { display: block; }
+  .hero-stats { display: none; }
+  body.v3 .hero-stats {
+    display: flex; position: absolute; left: 3.3vw; top: calc(33% + 14.5vw + 6vh + 6.4vw); z-index: 2;
+    align-items: stretch; gap: 2.4vw;
+  }
+  .hs-item { display: flex; flex-direction: column; gap: 3px; padding-right: 2.4vw; border-right: 1px solid rgba(255,255,255,.16); }
+  .hs-item:last-child { border-right: none; padding-right: 0; }
+  .hs-num { font-family: 'Montserrat'; font-weight: 700; font-size: clamp(17px, 1.5vw, 29px); line-height: 1.1; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hs-label { font-family: 'Montserrat'; font-weight: 400; font-size: clamp(10px, .78vw, 14px); color: rgba(255,255,255,.6); }
   .fly-btn { position: absolute; z-index: 3; display: none; }
   body.v3 .fly-btn { display: block; }
   .fly-btn img { width: 100%; height: auto; display: block; filter: drop-shadow(0 20px 44px rgba(0,0,0,.4)); }
@@ -192,16 +201,24 @@
     }
     .hero-offer { position: static; }
     .brand-line { display: none; }
-    .offer-text { position: relative; left: 0; top: 0; z-index: 2; padding: 84vw 16px 0; text-align: center; }
+    .offer-text { position: relative; left: 0; top: 0; z-index: 2; padding: 76vw 16px 0; text-align: center; }
     .offer-text h1 { font-size: max(20px, 5.75vw); line-height: 1.33; letter-spacing: .03em; text-shadow: 0 2px 26px rgba(0,0,0,.65); }
     .hero-bottom { display: block; position: relative; z-index: 2; }
-    .hb-right { display: block; padding: 8.5vw 0 0; }
+    .hb-right { display: block; padding: 5vw 0 0; }
     body.v3 .offer-sub { position: static; max-width: 84vw; margin: 5vw auto 0; text-align: center;
       font-size: max(12px, 2.45vw); line-height: 1.6; }
     .fly-btn { position: static; }
     .btn-practice { width: 32.5vw; margin: 0 0 0 18.4vw; rotate: none; }
     .btn-book { width: 36.2vw; margin: -30.3vw 0 0 42.7vw; }
     .scroll-cue { display: none !important; }
+    body.v3 .hero-stats {
+      position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 10px;
+      margin: 6.5vw 22px 0; text-align: left;
+    }
+    .hs-item { border-right: none; padding: 0 0 0 12px; border-left: 2px solid rgba(255,90,31,.55); }
+    .hs-item:last-child { padding-right: 0; }
+    .hs-num { font-size: 19px; }
+    .hs-label { font-size: 11px; }
     section { padding: 44px 0; }
     .glow { display: none; }
   }
@@ -498,6 +515,12 @@
   </div>
   <div class="hero-bottom">
     <p class="offer-sub">Підвищ свій середній чек <span class="grad">у 1.5–2 рази</span><br>та покращи якість своїх клієнтів</p>
+    <div class="hero-stats">
+      <div class="hs-item"><span class="hs-num">77</span><span class="hs-label">уроків у 11 модулях</span></div>
+      <div class="hs-item"><span class="hs-num">5-8</span><span class="hs-label">студентів у групі</span></div>
+      <div class="hs-item"><span class="hs-num">2</span><span class="hs-label">реальні проєкти</span></div>
+      <div class="hs-item"><span class="hs-num">$500+</span><span class="hs-label">ціль — твій дохід на місяць</span></div>
+    </div>
     <div class="hb-right">
       <div class="fly-btn btn-practice"><img src="btn-practice.png" alt="З практикою на реальних проєктах"></div>
       <a class="fly-btn btn-book" href="#pricing"><img src="btn-book.png" alt="Забронювати місце"></a>
@@ -555,17 +578,7 @@
   </div>
 </section>
 
-<!-- STATS -->
-<section style="padding-top:0;">
-  <div class="container">
-    <div class="stats rv">
-      <div class="stat"><div class="num">77</div><div class="lbl">уроків у 11 модулях + онбординг</div></div>
-      <div class="stat"><div class="num">5-8</div><div class="lbl">студентів у групі — кожен під наглядом</div></div>
-      <div class="stat"><div class="num">2</div><div class="lbl">реальні проєкти на практиці: e-com і лідген</div></div>
-      <div class="stat"><div class="num">$500+</div><div class="lbl">ціль — твій стабільний місячний дохід</div></div>
-    </div>
-  </div>
-</section>
+
 
 <!-- PROGRAM -->
 <section id="program" style="padding-top:40px;">
