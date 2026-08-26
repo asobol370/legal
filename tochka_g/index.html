@@ -209,7 +209,8 @@
     .arc-divider { display: flex; justify-content: center; }
   .arc-divider img { width: min(86vw, 1500px); height: auto; display: block; }
   @media (max-width: 900px) {
-    .arc-divider img { width: 100vw; }
+    .arc-divider { overflow: hidden; width: 100%; }
+    .arc-divider img { width: 165vw; max-width: none; margin-left: -32.5vw; }
   }
 
   .hero-meta { display: none; }
