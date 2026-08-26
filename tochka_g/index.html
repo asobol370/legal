@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Точка G 2.0 — наставництво з Google Ads | Bohatyrov Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #060606;
+    --bg-2: #0c0c0c;
+    --surface: #111111;
+    --border: rgba(255,255,255,.09);
+    --text: #f5f2ee;
+    --muted: rgba(245,242,238,.55);
+    --soft: rgba(245,242,238,.35);
+    --orange: #ff5a1f;
+    --orange-2: #ff9b52;
+    --grad: linear-gradient(100deg, #ff5a1f, #ff9b52);
+  }
+  html { scroll-behavior: smooth; overflow-x: clip; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.55; overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+  .display { font-family: 'Montserrat', sans-serif; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  section { position: relative; padding: 110px 0; }
+
+  /* glow blobs */
+  .glow { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; }
+  .glow-orange { background: radial-gradient(circle, rgba(255,90,31,.55), rgba(255,90,31,0) 70%); }
+  .glow-deep { background: radial-gradient(circle, rgba(255,60,0,.35), rgba(255,60,0,0) 70%); }
+
+  /* reveal */
+  .rv { opacity: 0; transform: translateY(34px); transition: opacity .8s cubic-bezier(.2,.6,.2,1), transform .8s cubic-bezier(.2,.6,.2,1); }
+  .rv.on { opacity: 1; transform: none; }
+
+  /* ── NAV ── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+    backdrop-filter: blur(14px); background: rgba(6,6,6,.72);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .nav-in { max-width: 1200px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: 'Montserrat'; font-weight: 700; font-size: 14px; letter-spacing: .16em; }
+  .nav-logo span { color: var(--orange); }
+  .nav-links { display: flex; gap: 26px; align-items: center; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 13.5px; font-weight: 500; transition: color .15s; }
+  .nav-links a:hover { color: var(--text); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--grad); color: #140800; text-decoration: none;
+    font-weight: 700; font-size: 14px; padding: 13px 26px; border-radius: 999px;
+    transition: transform .18s, box-shadow .18s; border: none; cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 34px rgba(255,90,31,.4); }
+  .btn.small { padding: 10px 20px; font-size: 13px; }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid var(--border); color: var(--text); text-decoration: none;
+    font-weight: 600; font-size: 14px; padding: 13px 26px; border-radius: 999px;
+    transition: border-color .18s, background .18s;
+  }
+  .btn-ghost:hover { border-color: var(--orange); background: rgba(255,90,31,.08); }
+
+  /* ── HERO ── */
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 130px 0 70px; overflow: hidden; }
+  .hero-mark {
+    position: absolute; left: 50%; bottom: -1.5vw; transform: translateX(-50%);
+    font-family: 'Montserrat'; font-weight: 900; font-size: 13.5vw; line-height: .9;
+    color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.07);
+    white-space: nowrap; user-select: none; z-index: 0;
+  }
+  .hero-content { position: relative; z-index: 2; width: 100%; }
+  .chip-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+  .chip {
+    font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    padding: 8px 16px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted);
+  }
+  .chip.hot { border-color: rgba(255,90,31,.5); color: var(--orange-2); background: rgba(255,90,31,.08); }
+  .hero h1 { font-family: 'Montserrat'; font-weight: 800; font-size: clamp(44px, 7.4vw, 104px); line-height: 1.02; letter-spacing: -.01em; text-transform: uppercase; }
+  .hero h1 .line2 { display: block; margin-left: clamp(30px, 12vw, 190px); }
+  .hero h1 .g20 {
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+    position: relative;
+  }
+  .hero-sub { max-width: 560px; color: var(--muted); font-size: 17px; margin: 30px 0 40px; }
+  .hero-sub b { color: var(--text); }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .hero-note { font-size: 13px; color: var(--soft); margin-top: 18px; }
+
+  /* hero v2: offer layout */
+  .hero-grid { display: grid; grid-template-columns: 1fr 230px; gap: 48px; align-items: start; }
+  .hero-grid h1 { font-size: clamp(34px, 4.9vw, 72px); }
+  #h1-v1 { display: none; font-size: clamp(26px, 3.8vw, 56px); line-height: 1.12; }
+  body.v1 #h1-v1 { display: block; }
+  body.v1 #h1-v2, body.v1 .plaque-row { display: none; }
+  .plaque-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 30px 0 22px; }
+  .plaque {
+    display: flex; align-items: center; gap: 12px;
+    border: 1px solid rgba(255,90,31,.5); background: rgba(255,90,31,.09);
+    border-radius: 16px; padding: 16px 22px;
+    font-family: 'Montserrat'; font-weight: 600; font-size: clamp(14px, 1.5vw, 19px);
+  }
+  .plaque .arr { color: var(--orange); font-size: 1.2em; }
+  .g-line {
+    display: flex; gap: 12px; align-items: flex-start; max-width: 620px;
+    border: 1px dashed rgba(255,90,31,.4); border-radius: 14px; padding: 14px 18px;
+    font-size: 14px; color: var(--muted);
+  }
+  .g-line b { color: var(--text); }
+  .meta-col { display: flex; flex-direction: column; text-align: right; margin-top: 12px; }
+  .meta-item { padding: 18px 0; border-bottom: 1px solid var(--border); }
+  .meta-item:first-child { padding-top: 0; }
+  .meta-item:last-child { border-bottom: none; }
+  .m-label { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); margin-bottom: 6px; }
+  .m-val { font-family: 'Montserrat'; font-weight: 600; font-size: 19px; }
+  .cta-card {
+    position: absolute; right: 28px; bottom: 34px; z-index: 5;
+    background: var(--grad); color: #140800; text-decoration: none;
+    border-radius: 24px; padding: 26px 26px 22px; width: 252px;
+    font-family: 'Montserrat'; font-weight: 700; font-size: 19px; line-height: 1.25;
+    display: flex; flex-direction: column; gap: 34px;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .cta-card:hover { transform: translateY(-4px); box-shadow: 0 18px 50px rgba(255,90,31,.45); }
+  .cta-bottom { display: flex; align-items: flex-end; justify-content: space-between; }
+  .seats-line { font-family: 'Inter'; font-size: 12.5px; font-weight: 600; opacity: .75; }
+  .cta-arrow { font-size: 40px; line-height: 1; }
+  /* v3: photo hero — левый оффер + PNG-кнопки */
+  body.v3 .hero { display: block; position: relative; padding: 0; height: 100vh; min-height: 620px; background: #060606; }
+  body.v3 .hero::before {
+    content: ''; position: absolute; inset: 0; z-index: 0;
+    background: url('hero-clean.jpg') center top / cover no-repeat;
+    animation: bgSway 22s ease-in-out infinite;
+    will-change: transform;
+  }
+  @keyframes bgSway {
+    0%   { transform: translate(0, 0) scale(1.012); }
+    25%  { transform: translate(-0.3%, 0.25%) scale(1.02) rotate(.07deg); }
+    50%  { transform: translate(0.28%, -0.2%) scale(1.014); }
+    75%  { transform: translate(-0.15%, -0.3%) scale(1.024) rotate(-.06deg); }
+    100% { transform: translate(0, 0) scale(1.012); }
+  }
+  body.v3 .hero::after {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(6,6,6,0) 0%, rgba(6,6,6,0) 86%, rgba(6,6,6,.75) 96%, #060606 100%);
+  }
+  body.v3 .hero-mark, body.v3 .hero-grid, body.v3 .cta-card { display: none; }
+  body.v3 .nav { display: none; }
+  .hero-offer { position: absolute; inset: 0; z-index: 2; display: none; }
+  body.v3 .hero-offer { display: block; }
+  .brand-line { position: absolute; left: 3.3vw; top: 6.6%; display: flex; align-items: center; gap: .8vw; font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: clamp(11px, .9vw, 19px); color: rgba(255,255,255,.92); letter-spacing: .01em; }
+  .brand-line img { width: clamp(42px, 4.6vw, 96px); height: auto; display: block; }
+  .offer-text { position: absolute; left: 3.3vw; top: 33%; }
+  .offer-text h1 { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(26px, 3.5vw, 76px); line-height: 1.38; letter-spacing: .045em; text-transform: uppercase; color: #fff; }
+  .grad { background: linear-gradient(90deg, #ff4035, #fd8c4b); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero-bottom, .hb-right { display: contents; }
+  .offer-sub { position: absolute; left: 3.3vw; top: calc(33% + 14.5vw + 6vh); z-index: 2; max-width: 44vw; font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: clamp(13px, 1.35vw, 29px); line-height: 1.5; color: rgba(255,255,255,.95); display: none; }
+  body.v3 .offer-sub { display: block; }
+  .fly-btn { position: absolute; z-index: 3; display: none; }
+  body.v3 .fly-btn { display: block; }
+  .fly-btn img { width: 100%; height: auto; display: block; filter: drop-shadow(0 20px 44px rgba(0,0,0,.4)); }
+  .fly-btn { opacity: 0; }
+  .fly-btn.in { opacity: 1; animation: arrive 1.15s cubic-bezier(.22,1,.36,1); }
+  @keyframes arrive {
+    0%   { opacity: 0; transform: translateY(90px) scale(1.45); filter: blur(16px) brightness(1.8); }
+    45%  { opacity: 1; }
+    70%  { transform: translateY(-10px) scale(.98); filter: blur(0) brightness(1.15); }
+    100% { transform: none; filter: none; }
+  }
+  .btn-practice { width: max(180px, 19vw); right: 20vw; top: 33%; z-index: 3; }
+  .btn-practice img { animation: floatA 9s ease-in-out 2s infinite; }
+  .btn-book { width: max(200px, 21.5vw); right: 5vw; top: 47%; z-index: 4; cursor: pointer; }
+  .btn-book { transition: transform .3s cubic-bezier(.22,1,.36,1); }
+  .btn-book.in:hover { transform: scale(1.05) rotate(1deg); }
+  .btn-book img { animation: floatB 10s ease-in-out 2.4s infinite; }
+  @keyframes floatA { 0% { transform: translateY(0); } 35% { transform: translateY(9px); } 75% { transform: translateY(-6px); } 100% { transform: translateY(0); } }
+  @keyframes floatB { 0% { transform: translateY(0); } 35% { transform: translateY(-10px); } 75% { transform: translateY(7px); } 100% { transform: translateY(0); } }
+  @media (max-width: 900px) {
+    body.v3 .hero { height: 187vw; min-height: 0; padding: 0; background: #060606 url('hero-mob.jpg') top center / 100% auto no-repeat; }
+    body.v3 .hero::before { display: none; }
+    body.v3 .hero::after {
+      display: block; inset: auto 0 0 0; height: 16vw; z-index: 1;
+      background: linear-gradient(180deg, rgba(6,6,6,0) 0%, #060606 92%);
+    }
+    .hero-offer { position: static; }
+    .brand-line { display: none; }
+    .offer-text { position: relative; z-index: 2; padding: 84vw 16px 0; text-align: center; }
+    .offer-text h1 { font-size: max(20px, 5.75vw); line-height: 1.33; letter-spacing: .03em; text-shadow: 0 2px 26px rgba(0,0,0,.65); }
+    .hero-bottom { display: block; position: relative; z-index: 2; }
+    .hb-right { display: block; padding: 8.5vw 0 0; }
+    body.v3 .offer-sub { position: static; max-width: 84vw; margin: 5vw auto 0; text-align: center;
+      font-size: max(12px, 2.45vw); line-height: 1.6; }
+    .fly-btn { position: static; }
+    .btn-practice { width: 32.5vw; margin: 0 0 0 18.4vw; rotate: none; }
+    .btn-book { width: 36.2vw; margin: -30.3vw 0 0 42.7vw; }
+    .scroll-cue { display: none !important; }
+    section { padding: 44px 0; }
+  }
+
+  .scroll-cue {
+    position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); z-index: 4;
+    display: none; align-items: center; text-decoration: none;
+    color: rgba(255,255,255,.65); opacity: .75; transition: color .2s, opacity .2s;
+  }
+  .scroll-cue:hover { opacity: 1; }
+  body.v3 .scroll-cue { display: flex; }
+  .scroll-cue:hover { color: #fff; }
+  .sc-circle {
+    width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.3); border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    line-height: .5; transition: border-color .2s;
+  }
+  .scroll-cue:hover .sc-circle { border-color: rgba(255,255,255,.65); }
+  .sc-circle span { display: block; font-size: 15px; animation: chev 1.6s ease-in-out infinite; }
+  .sc-circle span:nth-child(2) { animation-delay: .18s; }
+  @keyframes chev {
+    0%, 100% { opacity: .25; transform: translateY(-2px); }
+    50% { opacity: 1; transform: translateY(2.5px); }
+  }
+
+  .variant-toggle {
+    position: fixed; left: 18px; bottom: 18px; z-index: 99;
+    background: #1a1a1a; border: 1px solid var(--border); color: var(--muted);
+    border-radius: 999px; padding: 10px 18px; font-size: 12.5px; font-weight: 600;
+    cursor: pointer; font-family: inherit;
+  }
+  .variant-toggle:hover { color: var(--text); border-color: var(--orange); }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .meta-col { flex-direction: row; flex-wrap: wrap; text-align: left; gap: 0 28px; }
+    .meta-item { border-bottom: none; padding: 8px 0; }
+    .cta-card { position: static; margin: 30px 24px 0; width: auto; }
+  }
+
+  /* marquee */
+  .marquee { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 18px 0; overflow: hidden; background: var(--bg-2); }
+  .marquee-track { display: flex; gap: 48px; white-space: nowrap; animation: mq 26s linear infinite; width: max-content; }
+  @keyframes mq { to { transform: translateX(-50%); } }
+  .mq-item { font-family: 'Montserrat'; font-weight: 600; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--soft); display: flex; align-items: center; gap: 48px; }
+  .mq-item::after { content: '✦'; color: var(--orange); font-size: 12px; }
+
+  /* ── SECTION HEADERS ── */
+  .sec-label { font-size: 12px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--orange); margin-bottom: 18px; }
+  .sec-title { font-family: 'Montserrat'; font-weight: 600; font-size: clamp(30px, 4.6vw, 58px); line-height: 1.1; text-transform: uppercase; letter-spacing: .02em; }
+  .sec-title .shift { display: block; margin-left: clamp(20px, 6vw, 110px); color: var(--muted); }
+  .sec-title .accent { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* ── WHY / mentorship ── */
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; margin-top: 56px; }
+  .why-card {
+    background: linear-gradient(172deg, #262626 0%, #151515 42%, #0c0c0c 100%);
+    border: 1px solid rgba(255,255,255,.06); border-radius: 26px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.09);
+    padding: 28px 26px 30px; min-height: 272px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    transition: border-color .2s, transform .2s; position: relative; overflow: hidden;
+  }
+  .why-card:hover { border-color: rgba(255,90,31,.4); transform: translateY(-4px); }
+  .why-card .ico {
+    position: absolute; top: 22px; right: 24px; width: auto; height: auto;
+    background: none; margin: 0; display: block; color: rgba(255,255,255,.55);
+  }
+  .why-card .ico svg { width: 26px; height: 26px; display: block; }
+  .why-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; line-height: 1.32; }
+  .why-card p { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+  .why-card.hl { background: linear-gradient(150deg, #ff6a2e, #e83c12); border: none; }
+  .why-card.hl .ico { color: #fff; }
+  .why-card.hl h3 { color: #fff; }
+  .why-card.hl p { color: rgba(255,255,255,.85); }
+  .why-card.hl:hover { transform: translateY(-4px) scale(1.01); }
+  .why-photo {
+    position: relative; border-radius: 26px; overflow: hidden; z-index: 2;
+    margin-top: -120px; height: calc(100% + 120px); min-height: 380px;
+  }
+  .why-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .wp-caption {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 46px 22px 18px;
+    background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.72));
+    font-weight: 700; font-size: 16px; color: #fff;
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 12px;
+  }
+  .wp-partner { font-weight: 400; font-size: 11.5px; color: rgba(255,255,255,.6); white-space: nowrap; }
+  .wp-caption span { display: block; font-weight: 400; font-size: 12.5px; color: rgba(255,255,255,.75); margin-top: 2px; }
+  .wp-caption .wp-eyebrow { font-size: 11.5px; text-transform: uppercase; letter-spacing: .1em; font-weight: 400; color: rgba(255,255,255,.6); margin: 0 0 4px; }
+  .wp-caption .wp-creds { margin-top: 8px; font-size: 11.5px; color: rgba(255,255,255,.6); line-height: 1.55; }
+  @media (max-width: 900px) {
+    .why-grid { display: block; }
+    .why-card, .why-photo { position: sticky; margin-bottom: 16px; }
+    .why-card:nth-child(1), .why-photo:nth-child(1) { top: 24px; }
+    .why-grid > *:nth-child(1) { top: 24px; }
+    .why-grid > *:nth-child(2) { top: 34px; }
+    .why-grid > *:nth-child(3) { top: 44px; }
+    .why-grid > *:nth-child(4) { top: 54px; }
+    .why-grid > *:nth-child(5) { top: 64px; }
+    .why-grid > *:nth-child(6) { top: 74px; }
+    .why-card { min-height: 0; padding: 26px 24px; box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 -12px 30px rgba(0,0,0,.45); }
+    .why-photo { margin-top: 0; height: auto; min-height: 0; max-height: 440px; box-shadow: 0 -12px 30px rgba(0,0,0,.45); }
+  }
+  .vs-callout {
+    margin-top: 56px; border-radius: 24px; padding: 40px; position: relative; overflow: hidden;
+    background: linear-gradient(120deg, rgba(255,90,31,.16), rgba(255,90,31,.04) 55%), var(--surface);
+    border: 1px solid rgba(255,90,31,.3);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 34px;
+  }
+  .vs-callout h4 { font-family: 'Montserrat'; font-size: 15px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 12px; }
+  .vs-callout .bad h4 { color: var(--soft); }
+  .vs-callout .good h4 { color: var(--orange-2); }
+  .vs-callout p { font-size: 14.5px; color: var(--muted); }
+  .vs-callout .good p b { color: var(--text); }
+
+  .vs-duel { display: grid; grid-template-columns: 1fr auto 1fr; gap: 44px; margin-top: 64px; align-items: stretch; }
+  .vs-col h4 { font-family: 'Montserrat'; font-weight: 600; font-size: 15px; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 16px; }
+  .vs-bad h4 { color: var(--soft); }
+  .vs-good h4 { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .vs-col ul { list-style: none; margin: 0; padding: 0; }
+  .vs-col li { display: flex; gap: 14px; align-items: baseline; font-size: 15px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .vs-col li:last-child { border-bottom: none; }
+  .vs-bad li { color: var(--soft); }
+  .vs-bad li::before { content: '✕'; color: rgba(255,255,255,.25); font-size: 13px; }
+  .vs-good li { color: rgba(245,242,238,.9); }
+  .vs-good li::before { content: '✓'; color: var(--orange-2); font-size: 14px; font-weight: 700; }
+  .vs-mid { position: relative; display: flex; align-items: center; justify-content: center; min-width: 46px; }
+  .vs-mid::before { content: ''; position: absolute; top: 6px; bottom: 6px; left: 50%; width: 1px; background: linear-gradient(180deg, transparent, rgba(255,90,31,.55), transparent); }
+  .vs-mid span { position: relative; z-index: 1; width: 46px; height: 46px; border-radius: 50%; background: #101010; border: 1px solid rgba(255,90,31,.5); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat'; font-weight: 700; font-size: 13px; color: var(--orange-2); }
+  @media (max-width: 860px) {
+    .vs-duel { grid-template-columns: 1fr; gap: 20px; }
+    .vs-mid { min-height: 46px; }
+    .vs-mid::before { top: 50%; bottom: auto; left: 6px; right: 6px; width: auto; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,90,31,.55), transparent); }
+  }
+
+  /* ── STATS ── */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 24px; overflow: hidden; margin-top: 0; }
+  .stat { background: var(--bg-2); padding: 38px 30px; }
+  .stat .num { font-family: 'Montserrat'; font-weight: 800; font-size: clamp(34px, 4vw, 52px); background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .stat .lbl { font-size: 13.5px; color: var(--muted); margin-top: 8px; }
+
+  /* ── PROGRAM ── */
+  .prog-list { margin-top: 60px; border-top: 1px solid var(--border); }
+  .prog-item { border-bottom: 1px solid var(--border); cursor: pointer; transition: background .2s; }
+  .prog-item:hover { background: rgba(255,255,255,.02); }
+  .prog-head { display: grid; grid-template-columns: 110px 1fr auto auto; gap: 24px; align-items: center; padding: 26px 18px; }
+  .prog-num { font-family: 'Montserrat'; font-weight: 800; font-size: 34px; color: transparent; -webkit-text-stroke: 1.3px rgba(255,255,255,.22); transition: all .25s; }
+  .prog-item:hover .prog-num, .prog-item.open .prog-num { color: var(--orange); -webkit-text-stroke: 1.3px transparent; }
+  .prog-title { font-family: 'Montserrat'; font-weight: 600; font-size: clamp(15px, 1.6vw, 19px); }
+  .prog-count { font-size: 13px; color: var(--soft); white-space: nowrap; }
+  .prog-arrow { width: 34px; height: 34px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--muted); transition: all .25s; font-size: 15px; }
+  .prog-item.open .prog-arrow { background: var(--orange); border-color: var(--orange); color: #140800; transform: rotate(45deg); }
+  .prog-body { max-height: 0; overflow: hidden; transition: max-height .45s cubic-bezier(.2,.6,.2,1); }
+  .prog-body-in { padding: 0 18px 30px 152px; color: var(--muted); font-size: 14.5px; max-width: 860px; }
+  .prog-body-in b { color: var(--orange-2); font-weight: 600; }
+  @media (max-width: 760px) {
+    .prog-head { grid-template-columns: 64px 1fr auto; }
+    .prog-count { display: none; }
+    .prog-num { font-size: 24px; }
+    .prog-body-in { padding-left: 18px; }
+  }
+
+  /* ── PRACTICE ── */
+  .practice { background: var(--bg-2); }
+  .week-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 56px; }
+  .week-card {
+    position: relative; border: 1px solid var(--border); border-radius: 20px; padding: 30px 26px 26px;
+    background: var(--surface); overflow: hidden; min-height: 300px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    transition: border-color .2s, transform .2s;
+  }
+  .week-card:hover { border-color: rgba(255,90,31,.5); transform: translateY(-5px); }
+  .week-card .big {
+    position: absolute; top: -12px; right: 6px;
+    font-family: 'Montserrat'; font-weight: 900; font-size: 110px; line-height: 1;
+    color: transparent; -webkit-text-stroke: 1.4px rgba(255,255,255,.1);
+    user-select: none;
+  }
+  .week-card.hl { background: linear-gradient(150deg, #ff5a1f, #b32e00); border-color: transparent; }
+  .week-card.hl .big { -webkit-text-stroke: 1.4px rgba(255,255,255,.35); }
+  .week-card .tag { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--orange-2); margin-bottom: 10px; }
+  .week-card.hl .tag { color: rgba(255,255,255,.75); }
+  .week-card h3 { font-family: 'Montserrat'; font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+  .week-card p { font-size: 13.5px; color: var(--muted); }
+  .week-card.hl p { color: rgba(255,255,255,.82); }
+  .practice-note {
+    margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .p-pill { border: 1px solid var(--border); border-radius: 999px; padding: 10px 20px; font-size: 13.5px; color: var(--muted); }
+  .p-pill b { color: var(--text); }
+
+  /* ── PRICING ── */
+  .price-grid { display: grid; grid-template-columns: 1fr 1.08fr; gap: 22px; margin-top: 60px; align-items: stretch; }
+  @media (max-width: 860px) { .price-grid { grid-template-columns: 1fr; } }
+  .price-card {
+    border: 1px solid var(--border); border-radius: 26px; padding: 40px 36px;
+    background: var(--surface); position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .price-card.premium { border: 1.5px solid rgba(255,90,31,.65); background: linear-gradient(160deg, rgba(255,90,31,.13), rgba(255,90,31,.02) 45%), var(--surface); }
+  .price-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .price-name { font-family: 'Montserrat'; font-weight: 700; font-size: 22px; text-transform: uppercase; }
+  .seats { font-size: 12px; font-weight: 700; letter-spacing: .06em; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.07); color: var(--muted); }
+  .seats.hot { background: rgba(255,90,31,.16); color: var(--orange-2); animation: pulse 2.2s ease-in-out infinite; }
+  @keyframes pulse { 50% { box-shadow: 0 0 0 7px rgba(255,90,31,.07); } }
+  .price-val { margin: 18px 0 4px; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .price-old { font-family: 'Montserrat'; font-size: 20px; color: var(--soft); text-decoration: line-through; }
+  .price-now { font-family: 'Montserrat'; font-weight: 800; font-size: 52px; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .price-split { font-size: 13.5px; color: var(--muted); margin-bottom: 26px; }
+  .feat { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+  .feat li { display: flex; gap: 12px; font-size: 14.5px; color: var(--muted); align-items: flex-start; }
+  .feat li::before { content: '✓'; flex: 0 0 20px; height: 20px; border-radius: 6px; background: rgba(255,90,31,.14); color: var(--orange-2); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+  .feat li b { color: var(--text); font-weight: 600; }
+  .feat li.star::before { content: '★'; background: var(--grad); color: #140800; }
+  .price-card .btn, .price-card .btn-ghost { margin-top: auto; justify-content: center; }
+  .guarantee {
+    margin-top: 26px; border-radius: 18px; border: 1px dashed rgba(255,90,31,.5);
+    background: rgba(255,90,31,.06); padding: 20px 22px; font-size: 13.5px; color: var(--muted);
+  }
+  .guarantee b { color: var(--orange-2); }
+  .prepay-note { text-align: center; margin-top: 34px; color: var(--soft); font-size: 13.5px; }
+  .prepay-note b { color: var(--muted); }
+
+  /* ── CTA ── */
+  .cta { overflow: hidden; text-align: left; padding: 150px 0 130px; }
+  .cta .sec-title { font-size: clamp(40px, 7vw, 92px); }
+  .cta-sub { color: var(--muted); max-width: 520px; font-size: 16.5px; margin: 30px 0 44px; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .cta-contacts { margin-top: 46px; display: flex; gap: 28px; flex-wrap: wrap; }
+  .cta-contacts a { color: var(--muted); text-decoration: none; font-size: 14.5px; display: flex; gap: 8px; align-items: center; transition: color .15s; }
+  .cta-contacts a:hover { color: var(--orange-2); }
+
+  footer { border-top: 1px solid var(--border); padding: 30px 0; }
+  .foot-in { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--soft); }
+
+  @media (max-width: 760px) {
+    section { padding: 80px 0; }
+    .nav-links a:not(.btn) { display: none; }
+    .vs-callout { grid-template-columns: 1fr; padding: 28px; }
+    .hero { padding-top: 130px; }
+  }
+</style>
+</head>
+<body class="v3">
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="nav-logo display">BOHATYROV<span>.</span></div>
+    <div class="nav-links">
+      <a href="#program">Програма</a>
+      <a href="#practice">Практика</a>
+      <a href="#pricing">Тарифи</a>
+      <a class="btn small" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">Забронювати місце</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="glow glow-orange" style="width:640px;height:640px;top:-160px;right:-180px;"></div>
+  <div class="glow glow-deep" style="width:520px;height:520px;bottom:-120px;left:-160px;"></div>
+  <div class="hero-mark">GOOGLE ADS</div>
+  <div class="container hero-content">
+    <div class="hero-grid">
+      <div>
+        <div class="chip-row rv">
+          <span class="chip hot">Точка G 2.0 · наставництво з Google Ads для таргетологів</span>
+          <span class="chip">практика на 2 реальних проєктах</span>
+        </div>
+        <h1 class="rv" id="h1-v2">Додай<br><span class="line2"><span class="g20">Google Ads</span></span>до своїх послуг</h1>
+        <h1 class="rv" id="h1-v1">Додай Google Ads до своїх послуг —<br><span class="g20">чек у 1,5-2 рази вищий, клієнти&nbsp;— серйозніші</span></h1>
+        <div class="plaque-row rv">
+          <div class="plaque"><span class="arr">↑</span> середній чек у 1,5-2 рази</div>
+          <div class="plaque"><span class="arr">↑</span> серйозніші проєкти в портфелі</div>
+        </div>
+        <div class="g-line rv">🛡 <span><b>Виконуєш програму, але не виходиш на $500+/міс?</b> Працюю з тобою далі — безкоштовно, поки це не станеться.</span></div>
+        <div class="hero-cta rv" style="margin-top: 28px;">
+          <a class="btn-ghost" href="#program">Дивитись програму</a>
+        </div>
+      </div>
+      <aside class="meta-col rv">
+        <div class="meta-item"><div class="m-label">початок</div><div class="m-val">жовтень ’26</div></div>
+        <div class="meta-item"><div class="m-label">тривалість</div><div class="m-val">14 тижнів</div></div>
+        <div class="meta-item"><div class="m-label">формат</div><div class="m-val">група 5-8</div></div>
+        <div class="meta-item"><div class="m-label">супровід</div><div class="m-val">+3 місяці</div></div>
+      </aside>
+    </div>
+  </div>
+  <div class="hero-offer">
+    <div class="brand-line"><img src="logo-g-crop.png" alt=".G"><span>наставництво з Google Ads для digital-експертів</span></div>
+    <div class="offer-text">
+      <h1>Додай <span class="grad">Google Ads</span><br>до своїх послуг<br>за 14 тижнів</h1>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <p class="offer-sub">Підвищ свій середній чек <span class="grad">у 1.5–2 рази</span><br>та покращи якість своїх клієнтів</p>
+    <div class="hb-right">
+      <div class="fly-btn btn-practice"><img src="btn-practice.png" alt="З практикою на реальних проєктах"></div>
+      <a class="fly-btn btn-book" href="#pricing"><img src="btn-book.png" alt="Забронювати місце"></a>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#why"><span class="sc-circle"><span>⌄</span><span>⌄</span></span></a>
+  <a class="cta-card rv" href="#pricing">
+    <span>забронювати<br>місце</span>
+    <span class="cta-bottom"><span class="seats-line">3 з 7 місць вільні</span><span class="cta-arrow">→</span></span>
+  </a>
+</header>
+
+<div class="marquee" style="display:none">
+  <div class="marquee-track">
+    <span class="mq-item">Search Ads</span><span class="mq-item">Performance Max</span><span class="mq-item">Shopping</span><span class="mq-item">Трекінг і конверсії</span><span class="mq-item">AI-автоматизація</span><span class="mq-item">Робота з клієнтом</span>
+    <span class="mq-item">Search Ads</span><span class="mq-item">Performance Max</span><span class="mq-item">Shopping</span><span class="mq-item">Трекінг і конверсії</span><span class="mq-item">AI-автоматизація</span><span class="mq-item">Робота з клієнтом</span>
+  </div>
+</div>
+
+<!-- WHY -->
+<section id="why">
+  <div class="glow glow-deep" style="width:480px;height:480px;top:10%;right:-200px;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <h2 class="sec-title rv">Це не курс.<span class="shift">Це <span class="accent">наставництво</span></span></h2>
+    <div class="why-grid">
+      <div class="why-card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4.5"/><path d="m8.5 12.2 2.5 2.5 5-5.4"/></svg></div><h3>Перевіряю<br>кожне завдання<br>руками</h3><p>Бачу твій прогрес. Не загубишся в чаті з тисячею повідомлень.</p></div>
+      <div class="why-card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H3.5l2.6-3A8.5 8.5 0 1 1 21 11.5Z"/></svg></div><h3>Прямий доступ<br>до мене</h3><p>Питання → відповідь того ж дня. Без коучів, кураторів і «ваше питання передали».</p></div>
+      <div class="why-photo rv">
+        <img src="vlad-photo.jpg" alt="Влад Богатирьов">
+        <div class="wp-caption"><div class="wp-left"><span class="wp-eyebrow">автор навчання</span>Влад Богатирьов<span class="wp-creds">Digital-маркетолог</span></div><span class="wp-partner">Google Partner</span></div>
+      </div>
+      <div class="why-card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="13" height="12" rx="3"/><path d="m15.5 10.2 6-3.7v11l-6-3.7"/></svg></div><h3>Живі зустрічі<br>щотижня</h3><p>Розбираємо твою стратегію, твій запуск, твої search terms — на ефірі, з групою.</p></div>
+      <div class="why-card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13.5a8 8 0 1 1 16 0"/><rect x="2.5" y="13.5" width="4.2" height="6" rx="2.1"/><rect x="17.3" y="13.5" width="4.2" height="6" rx="2.1"/></svg></div><h3>Супровід<br>після курсу</h3><p>Коли візьмеш першого клієнта і запанікуєш — я поряд. +2-3 місяці підтримки.</p></div>
+      <div class="why-card hl rv"><div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 8.2 7.6 12 12 5l4.4 7L21 8.2l-1.7 10.6H4.7L3 8.2Z"/><rect x="4.7" y="20" width="14.6" height="1.6" rx=".8"/></svg></div><h3>Кейс<br>у портфоліо</h3><p>Реальні цифри і висновки з практики на діючих проєктах — вже під час навчання.</p></div>
+    </div>
+    <div class="vs-duel rv">
+      <div class="vs-col vs-bad">
+        <h4>Звичайний курс</h4>
+        <ul>
+          <li>«Дивись відео, далі сам»</li>
+          <li>Гори уроків — і жодної перевірки</li>
+          <li>Через місяць забув половину</li>
+        </ul>
+      </div>
+      <div class="vs-mid"><span>VS</span></div>
+      <div class="vs-col vs-good">
+        <h4>Наставництво</h4>
+        <ul>
+          <li>Поряд людина, яка бачить твою роботу</li>
+          <li>Помилки виправляються одразу</li>
+          <li>На виході — реальний рівень і кейс у портфоліо</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="stats rv">
+      <div class="stat"><div class="num">77</div><div class="lbl">уроків у 11 модулях + онбординг</div></div>
+      <div class="stat"><div class="num">5-8</div><div class="lbl">студентів у групі — кожен під наглядом</div></div>
+      <div class="stat"><div class="num">2</div><div class="lbl">реальні проєкти на практиці: e-com і лідген</div></div>
+      <div class="stat"><div class="num">$500+</div><div class="lbl">ціль — твій стабільний місячний дохід</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section id="program" style="padding-top:40px;">
+  <div class="container">
+    <div class="sec-label rv">Програма навчання</div>
+    <h2 class="sec-title rv">Від нуля<span class="shift">до <span class="accent">спеціаліста</span></span></h2>
+    <div class="prog-list rv">
+      <div class="prog-item"><div class="prog-head"><div class="prog-num">00</div><div class="prog-title">Онбординг</div><div class="prog-count">2 уроки</div><div class="prog-arrow">+</div></div>
+        <div class="prog-body"><div class="prog-body-in">Як влаштоване навчання: чат, завдання, фідбек. Налаштовуємо AI-помічника під Google Ads. <b>Результат:</b> чіткий вектор для комфортного проходження навчання.</div></div></div>
+      <div class="prog-item"><div class="prog-head"><div class="prog-num">01</div><div class="prog-title">Hello, my name is Google Ads</div><div class="prog-count">6 уроків</div><div class="prog-arrow">+</div></div>
+        <div class="prog-body"><div class="prog-body-in">Meta vs Google: інтерес vs інтент. Типи кампаній, воронка, екосистема (GA4, Merchant, GTM), аукціон і ставки. <b>Результат:</b> розумієш кому з клієнтів реально потрібен Google — на зустрічі виглядаєш фахівцем, а не «таргетологом, який вирішив спробувати».</div></div></div>
+      <div class="prog-item"><div class="prog-head"><div class="prog-num">02</div><div class="prog-title">Створення і налаштування кабінету</div><div class="prog-count">5 уроків</div><div class="prog-arrow">+</div></div>
+        <div class="prog-body"><div class="prog-body-in">Акаунт під ФОП/ТОВ, платежі, перевірка рекламодавця, доступи і ролі, MCC, безпека. <b>Результат:</b> робочий акаунт з нуля + економія клієнтам до 20% бюджету на VAT.</div></div></div>
+      <div class="prog-item"><div class="prog-head"><div class="prog-num">03</div><div class="prog-title">Трекінг і конверсії</div><div class="prog-count">11 уроків</div><div class="prog-arrow">+</div></div>
+        <div class="prog-body"><div class="prog-body-in">GA4 + GTM + Ads, події і Key Events, імпорт та прямі конверсії, офлайн-конверсії з CRM, value rules, Enhanced Conversions, Consent Mode v2. <b>Результат:</b> повноцінний трекінг без програмістів — саме цей рівень відрізняє «джунів» від фахівців з чеком $600+ на місяць.</div></div></div>
+      <div class="prog-item"><div class="prog-head"><div class="prog-num">04</div><div class="prog-title">Підготовка до запуску</div><div class="prog-count">6 уроків</div><div class="prog-arrow">+</div></div>
+        <div class="prog-body"><div class="prog-body-in">Аудит сайту, портрет ЦА через інтенти, аналіз конкурентів, бенчмарки ніші, офер, стратегія запуску. <b>Результат:</b> аналізуєш ДО запуску, а не після злитого бюджету — клієнт бачить маркетолога, а не «кнопкодава».</div></div></div>
+      <div class="prog-item"><div class="prog-head"><div class="prog-num">05</div><div class="prog-title">Search Ads</div><div class="prog-count">10 уроків</div><div class="prog-arrow">+</div></div>
+        <div class="prog-body"><div class="prog-body-in">Структура акаунта, семантика через AI, типи відповідності, RSA, розширення, бюджет, показник якості, стратегії ставок, повний walkthrough запуску, AI Max for Search. <b>Результат:</b> продаєш послугу від $400/міс — базовий тип кампаній, на якому тримається 70% контекстної реклами.</div></div></div>
+      <div class="prog-item"><div class="prog-head"><div class="prog-num">06</div><div class="prog-title">Оптимізація і масштабування Search</div><div class="prog-count">4 уроки</div><div class="prog-arrow">+</div></div>
+        <div class="prog-body"><div class="prog-body-in">Аналіз кампаній, робота з search terms, A/B-тести, безпечне масштабування бюджету. <b>Результат:</b> клієнт бачить стабільний результат і не йде — це формує LTV $3000+ з одного клієнта.</div></div></div>
+      <div class="prog-item"><div class="prog-head"><div class="prog-num">07</div><div class="prog-title">Merchant Center & Shopping</div><div class="prog-count">6 уроків</div><div class="prog-arrow">+</div></div>
+        <div class="prog-body"><div class="prog-body-in">Merchant Center з нуля, товарний фід, Standard Shopping, запуск, оптимізація, масштабування. <b>Результат:</b> відкриваєш нішу e-com клієнтів з чеками $500-1500 на місяць.</div></div></div>
+      <div class="prog-item"><div class="prog-head"><div class="prog-num">08</div><div class="prog-title">Performance Max</div><div class="prog-count">7 уроків</div><div class="prog-arrow">+</div></div>
+        <div class="prog-body"><div class="prog-body-in">Asset groups, signals, search themes, e-com vs лідген, AI-генерація асетів, brand controls, канібалізація з Search. <b>Результат:</b> приручаєш «чорну скриньку» Google — головний тип кампаній 2026 року.</div></div></div>
+      <div class="prog-item"><div class="prog-head"><div class="prog-num">09</div><div class="prog-title">Display / YouTube / Demand Gen / Ремаркетинг</div><div class="prog-count">6 уроків</div><div class="prog-arrow">+</div></div>
+        <div class="prog-body"><div class="prog-body-in">Аудиторії, Customer Match, Display, YouTube, Demand Gen, статичний і динамічний ремаркетинг. <b>Результат:</b> будуєш повну воронку — ремаркетинг дає одні з найдешевших лідів.</div></div></div>
+      <div class="prog-item"><div class="prog-head"><div class="prog-num">10</div><div class="prog-title">Робота з клієнтом</div><div class="prog-count">5 уроків</div><div class="prog-arrow">+</div></div>
+        <div class="prog-body"><div class="prog-body-in">Pricing, онбординг, шаблони звітів, скрипти складних розмов, передача акаунта і кейс. <b>Результат:</b> упаковуєш послуги під чек $600+/міс — Media Buyer партнер, якому довіряють бюджети.</div></div></div>
+      <div class="prog-item"><div class="prog-head"><div class="prog-num">11</div><div class="prog-title">AI і автоматизація</div><div class="prog-count">9 уроків</div><div class="prog-arrow">+</div></div>
+        <div class="prog-body"><div class="prog-body-in">AI-стек 2026: Claude, ChatGPT, Apps Script. SQR-аналіз з відправкою в Telegram, research конкурентів через Claude Code, автозвіти в Sheets, Change Log в Notion, AI-креативи. <b>Результат:</b> економиш 10+ годин на тиждень — береш у 2-3 рази більше клієнтів без втрати якості.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE -->
+<section id="practice" class="practice">
+  <div class="glow glow-orange" style="width:520px;height:520px;top:-200px;left:50%;transform:translateX(-50%);opacity:.5;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <h2 class="sec-title rv">Реальний досвід<span class="shift">замість <span class="accent">конспектів</span></span></h2>
+    <p class="rv" style="max-width:640px;margin-top:26px;color:var(--muted);font-size:16px;">Після теорії — практика на <b style="color:var(--text)">двох реальних проєктах</b> (e-commerce і лідген). Повний цикл у власному рекламному акаунті під моїм MCC: від аналізу ніші до захисту кейсу перед групою.</p>
+    <div class="week-grid">
+      <div class="week-card rv"><div class="big">01</div><div class="tag">Тиждень 1</div><h3>Стратегія</h3><p>Розбираєш обидві ніші — від аналізу сайту і конкурентів до оферу. Наприкінці — живий захист стратегії перед групою.</p></div>
+      <div class="week-card rv"><div class="big">02</div><div class="tag">Тиждень 2</div><h3>Запуск</h3><p>Трекінг, фід, креативи — і запуск перших кампаній на живому воркшопі. Реальний трафік у твоєму акаунті.</p></div>
+      <div class="week-card rv"><div class="big">03</div><div class="tag">Тиждень 3</div><h3>Оптимізація</h3><p>Чистиш трафік, докручуєш ставки, прокачуєш оголошення. Разом розбираємо SQR кожного студента.</p></div>
+      <div class="week-card hl rv"><div class="big">04</div><div class="tag">Тиждень 4</div><h3>Захист кейсу</h3><p>План масштабування, фінальний звіт і кейс для портфоліо. Презентуєш результати — як справжньому клієнту.</p></div>
+    </div>
+    <div class="practice-note rv">
+      <span class="p-pill">✓ <b>Кейс у портфоліо</b> з реальними цифрами</span>
+      <span class="p-pill">✓ Свій акаунт у <b>MCC</b>, готовий до клієнтів</span>
+      <span class="p-pill">✓ <b>Сертифікат</b> для LinkedIn і клієнтів</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="glow glow-deep" style="width:600px;height:600px;bottom:-150px;right:-200px;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="sec-label rv">Тарифи</div>
+    <h2 class="sec-title rv">Обери свій<span class="shift"><span class="accent">формат</span></span></h2>
+    <div class="price-grid">
+      <div class="price-card rv">
+        <div class="price-head"><div class="price-name">Груповий</div><span class="seats">3 з 7 місць</span></div>
+        <div class="price-val"><span class="price-old">$999</span><span class="price-now">$699</span></div>
+        <div class="price-split">або $233 × 3 платежі</div>
+        <ul class="feat">
+          <li><b>Доступ до всіх модулів назавжди</b></li>
+          <li>Матеріали, гайди, чек-листи під кожен модуль</li>
+          <li>Закритий чат учасників</li>
+          <li>Живі практичні лекції 1-2 рази на тиждень</li>
+          <li>Домашні завдання з фідбеком</li>
+          <li>Практика на реальних проєктах + <b>сертифікат</b></li>
+          <li>Пріоритет в передачі клієнтів на Google і Meta Ads</li>
+          <li>Безкоштовний доступ до майбутніх оновлень</li>
+          <li><b>+2 місяці супроводу</b> після навчання</li>
+        </ul>
+        <a class="btn-ghost" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">Забронювати місце</a>
+      </div>
+      <div class="price-card premium rv">
+        <div class="price-head"><div class="price-name">Преміум</div><span class="seats hot">1 з 2 місць</span></div>
+        <div class="price-val"><span class="price-now">$1149</span></div>
+        <div class="price-split">або $383 × 3 платежі</div>
+        <ul class="feat">
+          <li>Все, що в тарифі «Груповий», плюс:</li>
+          <li class="star"><b>Індивідуальні зізвони та чат зі мною</b></li>
+          <li class="star"><b>Допомога в роботі над твоїм проєктом</b></li>
+          <li class="star">Пріоритет в передачі клієнтів на Google Ads</li>
+          <li class="star">Доступ назавжди + всі майбутні оновлення</li>
+          <li class="star"><b>+3 місяці супроводу</b> після навчання</li>
+        </ul>
+        <div class="guarantee">🎁 <b>Гарантія результату:</b> якщо проходиш програму й виконуєш завдання, але не береш перший проєкт або не виходиш на дохід $500+/міс — працюю з тобою далі, поки це не станеться.</div>
+        <div style="height:26px"></div>
+        <a class="btn" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">Забронювати місце →</a>
+      </div>
+    </div>
+    <p class="prepay-note rv">Місце бронюється по передоплаті <b>3000 грн</b>, яка включається в загальну вартість навчання</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="glow glow-orange" style="width:700px;height:700px;bottom:-260px;left:8%;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="sec-label rv">Let's talk</div>
+    <h2 class="sec-title rv">Готовий<span class="shift"><span class="accent">зростати?</span></span></h2>
+    <p class="cta-sub rv">Напиши мені в дірект — відповім на питання і забронюю за тобою місце. Або одразу заповнюй анкету предзапису, і я звʼяжуся з тобою.</p>
+    <div class="cta-row rv">
+      <a class="btn" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">Написати в Telegram</a>
+      <a class="btn-ghost" href="https://docs.google.com/forms/d/e/1FAIpQLSdVNuRe4ruRqo-ITWjO85CTbOP9bw1Z1Osl1V2YxF3no9a6iw/viewform" target="_blank" rel="noopener">Анкета предзапису</a>
+    </div>
+    <div class="cta-contacts rv">
+      <a href="https://t.me/vlad_bo12" target="_blank" rel="noopener">TG — @vlad_bo12</a>
+      <a href="https://www.instagram.com/vladbogatyrev_/" target="_blank" rel="noopener">Inst — @vladbogatyrev_</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <span>© 2026 Bohatyrov Marketing</span>
+    <span>Точка G 2.0 · Наставництво з Google Ads</span>
+  </div>
+</footer>
+
+<noscript><style>.rv { opacity: 1; transform: none; }</style></noscript>
+<script>
+  // scroll reveal
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.rv').forEach(el => el.classList.add('on'));
+  }
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+  }), { threshold: 0.12 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // program accordion
+  document.querySelectorAll('.prog-item').forEach(item => {
+    item.querySelector('.prog-head').addEventListener('click', () => {
+      const body = item.querySelector('.prog-body');
+      const open = item.classList.contains('open');
+      document.querySelectorAll('.prog-item.open').forEach(o => {
+        o.classList.remove('open'); o.querySelector('.prog-body').style.maxHeight = 0;
+      });
+      if (!open) { item.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+    });
+  });
+</script>
+<button class="variant-toggle" id="vtoggle" style="display:none">Варіант: фон + оффер · натисни для наступного</button>
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => document.querySelector('.btn-practice').classList.add('in'), 350);
+    setTimeout(() => document.querySelector('.btn-book').classList.add('in'), 850);
+  });
+  const vStates = ['v3', 'v2', 'v1'];
+  const vNames = { v3: 'фон + оффер', v2: 'плашки', v1: 'все в H1' };
+  let vIdx = 0;
+  document.getElementById('vtoggle').addEventListener('click', function () {
+    vIdx = (vIdx + 1) % vStates.length;
+    document.body.classList.remove('v1', 'v3');
+    if (vStates[vIdx] !== 'v2') document.body.classList.add(vStates[vIdx]);
+    this.textContent = 'Варіант: ' + vNames[vStates[vIdx]] + ' · натисни для наступного';
+  });
+</script>
+</body>
+</html>
