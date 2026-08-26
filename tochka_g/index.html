@@ -322,13 +322,6 @@
   .wp-caption .wp-eyebrow { font-size: 11.5px; text-transform: uppercase; letter-spacing: .1em; font-weight: 400; color: rgba(255,255,255,.6); margin: 0 0 4px; }
   .wp-caption .wp-creds { margin-top: 8px; font-size: 11.5px; color: rgba(255,255,255,.6); line-height: 1.55; }
   @media (max-width: 900px) {
-    .week-grid { display: block; }
-    .week-card { position: sticky; margin-bottom: 16px; min-height: 0; padding: 26px 24px 28px; box-shadow: 0 -12px 30px rgba(0,0,0,.45); }
-    .week-card:nth-child(1) { top: 24px; }
-    .week-card:nth-child(2) { top: 34px; }
-    .week-card:nth-child(3) { top: 44px; }
-    .week-card:nth-child(4) { top: 54px; }
-    .week-card .big { font-size: 84px; top: -8px; }
     .why-grid { display: block; }
     .why-card, .why-photo { position: sticky; margin-bottom: 16px; }
     .why-card:nth-child(1), .why-photo:nth-child(1) { top: 24px; }
@@ -514,6 +507,15 @@
     .nav-links a:not(.btn) { display: none; }
     .vs-callout { grid-template-columns: 1fr; padding: 28px; }
     .hero { padding-top: 130px; }
+  }
+  @media (max-width: 900px) {
+    .week-grid { display: block; }
+    .week-card { position: sticky; margin-bottom: 16px; min-height: 0; padding: 26px 24px 28px; box-shadow: 0 -12px 30px rgba(0,0,0,.45); }
+    .week-card:nth-child(1) { top: 24px; }
+    .week-card:nth-child(2) { top: 34px; }
+    .week-card:nth-child(3) { top: 44px; }
+    .week-card:nth-child(4) { top: 54px; }
+    .week-card .big { font-size: 84px; top: -8px; }
   }
 </style>
 </head>
