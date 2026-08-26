@@ -449,6 +449,16 @@
     .support-sub { text-shadow: 0 1px 14px rgba(0,0,0,.7); }
   }
 
+  .eco-break { padding: 26px 0 6px; }
+  .eco-break img { display: block; width: 100%; border-radius: 26px; }
+  .practice-head { display: grid; grid-template-columns: 1.2fr .8fr; gap: 52px; align-items: center; }
+  .practice-art { width: 100%; max-width: 430px; border-radius: 26px; display: block; justify-self: end; }
+  @media (max-width: 900px) {
+    .practice-head { grid-template-columns: 1fr; gap: 26px; }
+    .practice-art { justify-self: center; max-width: 340px; }
+    .eco-break img { border-radius: 18px; }
+  }
+
   /* ── PRICING ── */
   .price-grid { display: grid; grid-template-columns: 1fr 1.08fr; gap: 22px; margin-top: 60px; align-items: stretch; }
   @media (max-width: 860px) { .price-grid { grid-template-columns: 1fr; } }
@@ -660,11 +670,20 @@
 </section>
 
 <!-- PRACTICE -->
+<section class="eco-break" aria-hidden="true">
+  <div class="container"><img src="eco-horizon.jpg" alt="" loading="lazy"></div>
+</section>
+
 <section id="practice" class="practice">
   <div class="glow glow-orange" style="width:520px;height:520px;top:-200px;left:50%;transform:translateX(-50%);opacity:.5;"></div>
   <div class="container" style="position:relative;z-index:1;">
-    <h2 class="sec-title rv">Реальний досвід<span class="shift">замість <span class="accent">конспектів</span></span></h2>
-    <p class="rv" style="max-width:640px;margin-top:26px;color:var(--muted);font-size:16px;">Після теорії — практика на <b style="color:var(--text)">двох реальних проєктах</b> (e-commerce і лідген). Повний цикл у власному рекламному акаунті під моїм MCC: від аналізу ніші до захисту кейсу перед групою.</p>
+    <div class="practice-head">
+      <div>
+        <h2 class="sec-title rv">Реальний досвід<span class="shift">замість <span class="accent">конспектів</span></span></h2>
+        <p class="rv" style="max-width:640px;margin-top:26px;color:var(--muted);font-size:16px;">Після теорії — практика на <b style="color:var(--text)">двох реальних проєктах</b> (e-commerce і лідген). Повний цикл у власному рекламному акаунті під моїм MCC: від аналізу ніші до захисту кейсу перед групою.</p>
+      </div>
+      <img class="practice-art rv" src="eco-tiles.jpg" alt="Екосистема Google" loading="lazy">
+    </div>
     <div class="week-grid">
       <div class="week-card rv"><div class="big">01</div><div class="tag">Тиждень 1</div><h3>Стратегія</h3><p>Розбираєш обидві ніші — від аналізу сайту і конкурентів до оферу. Наприкінці — живий захист стратегії перед групою.</p></div>
       <div class="week-card rv"><div class="big">02</div><div class="tag">Тиждень 2</div><h3>Запуск</h3><p>Трекінг, фід, креативи — і запуск перших кампаній на живому воркшопі. Реальний трафік у твоєму акаунті.</p></div>
