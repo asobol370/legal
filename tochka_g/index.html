@@ -451,7 +451,14 @@
   .cta-contacts a { color: var(--muted); text-decoration: none; font-size: 14.5px; display: flex; gap: 8px; align-items: center; transition: color .15s; }
   .cta-contacts a:hover { color: var(--orange-2); }
 
-  footer { border-top: 1px solid var(--border); padding: 30px 0; }
+  footer { border-top: 1px solid var(--border); padding: 34px 0 40px; position: relative; }
+  footer::before {
+    content: ''; position: absolute; left: 50%; bottom: -60px; transform: translateX(-50%);
+    width: 135vw; height: 380px; pointer-events: none; z-index: 0;
+    background: radial-gradient(42% 115% at 50% 108%, rgba(255, 196, 96, .32), transparent 62%),
+                radial-gradient(78% 165% at 50% 118%, rgba(255, 110, 28, .2), transparent 72%);
+  }
+  .foot-in { position: relative; z-index: 1; }
   .foot-in { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--soft); }
 
   @media (max-width: 760px) {
