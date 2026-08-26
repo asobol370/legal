@@ -428,23 +428,27 @@
 
   /* ── SUPPORT ── */
   .support { position: relative; overflow: hidden; padding: 150px 0 160px; background: #060606; }
-  .support-bg { position: absolute; inset: 0; background: url('night-window.jpg') 78% 30% / cover no-repeat; }
+  .support-bg { position: absolute; inset: 0; background: url('night-window.jpg?v=2') right center / auto 100% no-repeat; }
   .support-bg::after {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(90deg, rgba(6,6,6,.94) 0%, rgba(6,6,6,.62) 42%, rgba(6,6,6,.12) 72%, rgba(6,6,6,.3) 100%),
-                linear-gradient(180deg, #060606 0%, rgba(6,6,6,0) 14%, rgba(6,6,6,0) 86%, #060606 100%);
+    background: linear-gradient(90deg, #060606 0%, rgba(6,6,6,.9) 34%, rgba(6,6,6,.25) 58%, rgba(6,6,6,0) 78%),
+                linear-gradient(180deg, #060606 0%, rgba(6,6,6,0) 12%, rgba(6,6,6,0) 88%, #060606 100%);
   }
   .support-in { position: relative; z-index: 1; }
   .support-sub { margin-top: 26px; max-width: 540px; color: rgba(255,255,255,.88); font-size: 16.5px; line-height: 1.6; }
   .support-sub b { color: var(--orange-2); }
   .pact { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 44px; max-width: 680px; }
-  .pact-col { border: 1px dashed rgba(255,90,31,.45); border-radius: 18px; padding: 20px 22px; background: rgba(6,6,6,.6); backdrop-filter: blur(5px); }
+  .pact-col { border: 1px solid rgba(255,255,255,.09); border-radius: 18px; padding: 20px 22px; background: rgba(10,10,10,.72); backdrop-filter: blur(5px); }
+  .pact-col.hl { border: none; background: linear-gradient(150deg, #ff6a2e, #e83c12); }
+  .pact-col.hl h4 { color: rgba(255,255,255,.85); }
+  .pact-col.hl p { color: rgba(255,255,255,.92); }
+  .pact-col.hl p b { color: #fff; }
   .pact-col h4 { font-family: 'Montserrat'; font-weight: 600; font-size: 13.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--orange-2); margin-bottom: 9px; }
   .pact-col p { font-size: 14px; color: rgba(245,242,238,.85); line-height: 1.55; }
   .pact-col p b { color: #fff; }
   @media (max-width: 900px) {
     .support { padding: 70px 0 80px; }
-    .support-bg { background-position: 66% top; }
+    .support-bg { background: url('night-window.jpg?v=2') 0 -8vw / 130% auto no-repeat #060606; }
     .pact { grid-template-columns: 1fr; }
     .support-sub { text-shadow: 0 1px 14px rgba(0,0,0,.7); }
   }
@@ -707,7 +711,7 @@
     <p class="support-sub rv">14 тижнів навчання, а далі <b>+3 місяці я поряд</b>: питання в чаті, зворотний звʼязок по твоїх перших клієнтах і свіжі апдейти по Google Ads.</p>
     <div class="pact rv">
       <div class="pact-col"><h4>Твоя частина угоди</h4><p>Проходиш усі модулі, здаєш домашні завдання, робиш практику на проєктах.</p></div>
-      <div class="pact-col"><h4>Моя частина угоди</h4><p>Якщо після цього не береш перший проєкт або не виходиш на дохід <b>$500+ на місяць</b> — працюю з тобою далі безкоштовно, поки це не станеться.</p></div>
+      <div class="pact-col hl"><h4>Моя частина угоди</h4><p>Якщо після цього не береш перший проєкт або не виходиш на дохід <b>$500+ на місяць</b> — працюю з тобою далі безкоштовно, поки це не станеться.</p></div>
     </div>
   </div>
 </section>
