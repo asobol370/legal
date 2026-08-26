@@ -428,11 +428,11 @@
 
   /* ── SUPPORT ── */
   .support { position: relative; overflow: hidden; padding: 150px 0 160px; background: #060606; }
-  .support-bg { position: absolute; inset: 0; background: url('night-window.jpg?v=2') right center / auto 100% no-repeat; }
+  .support-bg { position: absolute; inset: 0; background: url('night-window.jpg?v=3') 78% 30% / cover no-repeat; }
   .support-bg::after {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(90deg, #060606 0%, rgba(6,6,6,.9) 34%, rgba(6,6,6,.25) 58%, rgba(6,6,6,0) 78%),
-                linear-gradient(180deg, #060606 0%, rgba(6,6,6,0) 12%, rgba(6,6,6,0) 88%, #060606 100%);
+    background: linear-gradient(90deg, rgba(6,6,6,.94) 0%, rgba(6,6,6,.62) 42%, rgba(6,6,6,.12) 72%, rgba(6,6,6,.3) 100%),
+                linear-gradient(180deg, #060606 0%, rgba(6,6,6,0) 14%, rgba(6,6,6,0) 86%, #060606 100%);
   }
   .support-in { position: relative; z-index: 1; }
   .support-sub { margin-top: 26px; max-width: 540px; color: rgba(255,255,255,.88); font-size: 16.5px; line-height: 1.6; }
@@ -448,7 +448,7 @@
   .pact-col p b { color: #fff; }
   @media (max-width: 900px) {
     .support { padding: 70px 0 80px; }
-    .support-bg { background: url('night-window.jpg?v=2') 0 -8vw / 130% auto no-repeat #060606; }
+    .support-bg { background: url('night-window.jpg?v=3') 0 -8vw / 130% auto no-repeat #060606; }
     .pact { grid-template-columns: 1fr; }
     .support-sub { text-shadow: 0 1px 14px rgba(0,0,0,.7); }
   }
