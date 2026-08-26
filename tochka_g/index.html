@@ -206,7 +206,17 @@
     .fly-btn { position: static; }
     .btn-practice { width: 32.5vw; margin: 0 0 0 18.4vw; rotate: none; }
     .btn-book { width: 36.2vw; margin: -30.3vw 0 0 42.7vw; }
-    .scroll-cue { display: none !important; }
+    .hero-meta { display: none; }
+  body.v3 .hero-meta { display: block; position: absolute; top: 8vh; right: 4vw; z-index: 2; text-align: right; }
+  .hm-item { padding: 20px 0; }
+  .hm-item:first-child { border-bottom: 1px solid rgba(255,255,255,.14); transform: translateX(-3.4vw); }
+  .hm-label { display: block; font-family: 'Montserrat'; font-weight: 400; font-size: 12.5px; letter-spacing: .02em; color: rgba(255,255,255,.45); margin-bottom: 6px; }
+  .hm-val { font-family: 'Montserrat'; font-weight: 500; font-size: clamp(17px, 1.45vw, 27px); color: #fff; }
+  @media (max-width: 900px) {
+    body.v3 .hero-meta { display: none; }
+  }
+
+  .scroll-cue { display: none !important; }
     .stats-bar { padding: 20px 0; }
     .hero-stats { gap: 8px; }
     .hs-item { padding-left: 9px; border-left: 1px solid rgba(255,255,255,.14); gap: 2px; }
@@ -214,6 +224,16 @@
     .hs-label { font-size: 8.5px; line-height: 1.35; }
     section { padding: 44px 0; }
     .glow { display: none; }
+  }
+
+  .hero-meta { display: none; }
+  body.v3 .hero-meta { display: block; position: absolute; top: 8vh; right: 4vw; z-index: 2; text-align: right; }
+  .hm-item { padding: 20px 0; }
+  .hm-item:first-child { border-bottom: 1px solid rgba(255,255,255,.14); transform: translateX(-3.4vw); }
+  .hm-label { display: block; font-family: 'Montserrat'; font-weight: 400; font-size: 12.5px; letter-spacing: .02em; color: rgba(255,255,255,.45); margin-bottom: 6px; }
+  .hm-val { font-family: 'Montserrat'; font-weight: 500; font-size: clamp(17px, 1.45vw, 27px); color: #fff; }
+  @media (max-width: 900px) {
+    body.v3 .hero-meta { display: none; }
   }
 
   .scroll-cue {
@@ -512,6 +532,10 @@
       <div class="fly-btn btn-practice"><img src="btn-practice.png" alt="З практикою на реальних проєктах"></div>
       <a class="fly-btn btn-book" href="#pricing"><img src="btn-book.png" alt="Забронювати місце"></a>
     </div>
+  </div>
+  <div class="hero-meta">
+    <div class="hm-item"><span class="hm-label">група</span><span class="hm-val">5-8 студентів</span></div>
+    <div class="hm-item"><span class="hm-label">практика</span><span class="hm-val">2 реальні проєкти</span></div>
   </div>
   <a class="scroll-cue" href="#why"><span class="sc-circle"><span>⌄</span><span>⌄</span></span></a>
   <a class="cta-card rv" href="#pricing">
