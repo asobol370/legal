@@ -142,11 +142,11 @@
     will-change: transform;
   }
   @keyframes bgSway {
-    0%   { transform: translate(0, 0) scale(1.012); }
-    25%  { transform: translate(-0.3%, 0.25%) scale(1.02) rotate(.07deg); }
-    50%  { transform: translate(0.28%, -0.2%) scale(1.014); }
-    75%  { transform: translate(-0.15%, -0.3%) scale(1.024) rotate(-.06deg); }
-    100% { transform: translate(0, 0) scale(1.012); }
+    0%   { transform: translate(0, 0) scale(1.02); }
+    25%  { transform: translate(-0.55%, 0.45%) scale(1.038) rotate(.12deg); }
+    50%  { transform: translate(0.5%, -0.35%) scale(1.024); }
+    75%  { transform: translate(-0.3%, -0.55%) scale(1.045) rotate(-.1deg); }
+    100% { transform: translate(0, 0) scale(1.02); }
   }
   body.v3 .hero::after {
     content: ''; position: absolute; inset: 0; z-index: 1;
@@ -189,8 +189,12 @@
   @keyframes floatA { 0% { transform: translateY(0); } 35% { transform: translateY(9px); } 75% { transform: translateY(-6px); } 100% { transform: translateY(0); } }
   @keyframes floatB { 0% { transform: translateY(0); } 35% { transform: translateY(-10px); } 75% { transform: translateY(7px); } 100% { transform: translateY(0); } }
   @media (max-width: 900px) {
-    body.v3 .hero { height: 183vw; min-height: 0; padding: 0; overflow: visible; background: #060606 url('hero-mob.jpg') top center / 100% auto no-repeat; }
-    body.v3 .hero::before { display: none; }
+    body.v3 .hero { height: 183vw; min-height: 0; padding: 0; overflow: visible; background: #060606; }
+    body.v3 .hero::before {
+      display: block; inset: 0;
+      background: url('hero-mob.jpg') top center / 100% auto no-repeat;
+      animation: bgSway 16s ease-in-out infinite;
+    }
     body.v3 .hero::after {
       display: block; inset: auto 0 0 0; height: 16vw; z-index: 1;
       background: linear-gradient(180deg, rgba(6,6,6,0) 0%, #060606 92%);
