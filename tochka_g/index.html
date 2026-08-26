@@ -206,22 +206,11 @@
     .fly-btn { position: static; }
     .btn-practice { width: 32.5vw; margin: 0 0 0 18.4vw; rotate: none; }
     .btn-book { width: 36.2vw; margin: -30.3vw 0 0 42.7vw; }
-    .arc-divider {
-    position: relative; height: 170px; overflow: hidden;
-    -webkit-mask-image: linear-gradient(90deg, transparent 8%, #000 34%, #000 66%, transparent 92%);
-    mask-image: linear-gradient(90deg, transparent 8%, #000 34%, #000 66%, transparent 92%);
-  }
-  .arc-divider::before {
-    content: ''; position: absolute; left: 0; right: 0; top: 70px; height: 330px;
-    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-    background: #060606;
-    box-shadow: 0 -2px 0 rgba(255, 150, 70, .85),
-                0 -12px 34px rgba(255, 95, 32, .45),
-                0 -46px 130px rgba(255, 70, 20, .25);
-  }
+    .arc-divider { display: flex; justify-content: center; padding: 26px 0 10px; background: #060606; }
+  .arc-divider img { width: min(74vw, 1150px); height: auto; display: block; }
   @media (max-width: 900px) {
-    .arc-divider { height: 92px; }
-    .arc-divider::before { top: 34px; height: 220px; left: 4%; right: 4%; }
+    .arc-divider { padding: 12px 0 4px; }
+    .arc-divider img { width: 96vw; }
   }
 
   .hero-meta { display: none; }
@@ -645,7 +634,7 @@
 
 
 <!-- PROGRAM -->
-<div class="arc-divider" aria-hidden="true"></div>
+<div class="arc-divider" aria-hidden="true"><img src="arc.jpg" alt=""></div>
 
 <section id="program" style="padding-top:40px;">
   <div class="container">
