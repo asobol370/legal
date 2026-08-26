@@ -211,9 +211,6 @@
     .glow { display: none; }
   }
 
-  .arc-divider { display: flex; justify-content: center; }
-  .arc-divider img { width: min(64vw, 1100px); height: auto; display: block; }
-  @media (max-width: 900px) { .arc-divider img { width: 84vw; } }
 
 
   .hero-meta { display: none; }
@@ -269,7 +266,7 @@
   .mq-item::after { content: '✦'; color: var(--orange); font-size: 12px; }
 
   /* ── SECTION HEADERS ── */
-  .sec-label { font-size: 12px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--orange); margin-bottom: 18px; }
+  .sec-label { font-family: 'Montserrat'; font-size: 14px; font-weight: 400; letter-spacing: .08em; text-transform: none; color: var(--orange); margin-bottom: 18px; }
   .sec-title { font-family: 'Montserrat'; font-weight: 600; font-size: clamp(30px, 4.6vw, 58px); line-height: 1.1; text-transform: uppercase; letter-spacing: .02em; }
   .sec-title .shift { display: block; margin-left: clamp(20px, 6vw, 110px); color: var(--muted); }
   .sec-title .accent { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -525,7 +522,7 @@
   </div>
   <div class="hero-meta">
     <div class="hm-item"><span class="hm-label">група</span><span class="hm-val">5-8 студентів</span></div>
-    <div class="hm-item"><span class="hm-label">практика</span><span class="hm-val">2 реальні проєкти</span></div>
+    <div class="hm-item"><span class="hm-label">навчання</span><span class="hm-val">уроки в записі + zoom’и</span></div>
   </div>
   <a class="scroll-cue" href="#why"><span class="sc-circle"><span>⌄</span><span>⌄</span></span></a>
   <a class="cta-card rv" href="#pricing">
@@ -584,10 +581,9 @@
 
 
 <!-- PROGRAM -->
-<div class="arc-divider" aria-hidden="true"><img src="arc.png?v=4" alt=""></div>
-
 <section id="program" style="padding-top:40px;">
-  <div class="container">
+  <div class="glow glow-orange" style="width:820px;height:820px;top:-260px;left:44%;transform:translateX(-50%);opacity:.35;"></div>
+  <div class="container" style="position:relative;z-index:1;">
     <div class="sec-label rv">Програма навчання</div>
     <h2 class="sec-title rv">Від нуля<span class="shift">до <span class="accent">спеціаліста</span></span></h2>
     <div class="prog-list rv">
