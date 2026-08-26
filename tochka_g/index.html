@@ -437,6 +437,14 @@
   .support-in { position: relative; z-index: 1; }
   .support-sub { margin-top: 26px; max-width: 540px; color: rgba(255,255,255,.88); font-size: 16.5px; line-height: 1.6; }
   .support-sub b { color: var(--orange-2); }
+  .support-teaser {
+    display: inline-block; margin-top: 36px; padding: 14px 20px; border-radius: 14px;
+    background: rgba(10,10,10,.72); border: 1px solid rgba(255,255,255,.1);
+    color: rgba(245,242,238,.85); font-size: 14px; text-decoration: none;
+    backdrop-filter: blur(5px); transition: border-color .2s;
+  }
+  .support-teaser:hover { border-color: rgba(255,90,31,.55); }
+  .support-teaser b { color: var(--orange-2); }
   .pact { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 44px; max-width: 680px; }
   .pact-col { border: 1px solid rgba(255,255,255,.09); border-radius: 18px; padding: 20px 22px; background: rgba(10,10,10,.72); backdrop-filter: blur(5px); }
   .pact-col.hl { border: none; background: linear-gradient(150deg, #ff6a2e, #e83c12); }
@@ -698,11 +706,8 @@
   <div class="container support-in">
     <div class="sec-label rv">супровід</div>
     <h2 class="sec-title rv">Навчання закінчиться.<span class="shift">Підтримка — <span class="accent">ні</span></span></h2>
-    <p class="support-sub rv">14 тижнів навчання, а далі <b>+3 місяці я поряд</b>: питання в чаті, зворотний звʼязок по твоїх перших клієнтах і свіжі апдейти по Google Ads.</p>
-    <div class="pact rv">
-      <div class="pact-col"><h4>Твоя частина угоди</h4><p>Проходиш усі модулі, здаєш домашні завдання, робиш практику на проєктах.</p></div>
-      <div class="pact-col hl"><h4>Моя частина угоди</h4><p>Якщо після цього не береш перший проєкт або не виходиш на дохід <b>$500+ на місяць</b> — працюю з тобою далі безкоштовно, поки це не станеться.</p></div>
-    </div>
+    <p class="support-sub rv">14 тижнів навчання, а далі <b>до 3-х місяців я поряд</b>: питання в чаті, зворотний звʼязок по твоїх перших клієнтах і свіжі апдейти по Google Ads.</p>
+    <a class="support-teaser rv" href="#pricing">🛡 На тарифі «Преміум» діє гарантія доходу <b>$500+/міс</b> — деталі в тарифах →</a>
   </div>
 </section>
 
