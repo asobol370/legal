@@ -962,8 +962,10 @@
       cards.forEach(c => c.classList.remove('is-open'));
       next.classList.add('is-open');
       if (deck.scrollWidth > deck.clientWidth + 4) {
-        const target = next.offsetLeft - (deck.clientWidth - next.getBoundingClientRect().width) / 2;
-        deck.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+        setTimeout(() => {
+          const target = next.offsetLeft - (deck.clientWidth - next.offsetWidth) / 2;
+          deck.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+        }, 560);
       }
     }, 2000);
   })();
