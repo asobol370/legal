@@ -250,6 +250,17 @@
     50% { opacity: 1; transform: translateY(2.5px); }
   }
 
+  footer { border-top: 1px solid rgba(255,255,255,.06); padding: 42px 0 34px; position: relative; z-index: 1; }
+  .foot-in { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .foot-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill {
+    padding: 11px 22px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px;
+    color: #fff; font-family: 'Montserrat'; font-weight: 500; font-size: 13.5px;
+    text-decoration: none; transition: border-color .2s, color .2s;
+  }
+  .pill:hover { border-color: rgba(255,90,31,.7); color: var(--orange-2); }
+  .foot-fop { margin-top: 30px; font-family: 'Montserrat'; font-size: 12px; color: rgba(255,255,255,.35); }
+
   .variant-toggle {
     position: fixed; left: 18px; bottom: 18px; z-index: 99;
     background: #1a1a1a; border: 1px solid var(--border); color: var(--muted);
@@ -886,6 +897,18 @@
     });
   });
 </script>
+<footer>
+  <div class="foot-in">
+    <div class="foot-pills">
+      <a class="pill" href="https://www.instagram.com/vladbogatyrev_/" target="_blank" rel="noopener">instagram</a>
+      <a class="pill" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">telegram</a>
+      <a class="pill" href="https://bogatyrev-marketing.notion.site/3c9c4e7bc24e813e9a4dcac7b4eb53a1" target="_blank" rel="noopener">конфіденційність</a>
+      <a class="pill" href="https://bogatyrev-marketing.notion.site/3c9c4e7bc24e811bacbcfac3a1d4a2b2" target="_blank" rel="noopener">оферта</a>
+    </div>
+    <div class="foot-fop">ФОП Богатирьова Наталія Вʼячеславівна</div>
+  </div>
+</footer>
+
 <button class="variant-toggle" id="vtoggle" style="display:none">Варіант: фон + оффер · натисни для наступного</button>
 <script>
   window.addEventListener('load', () => {
