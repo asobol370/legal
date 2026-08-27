@@ -465,32 +465,42 @@
 
   /* ── GRADS ── */
   .grads-sub { margin-top: 24px; max-width: 560px; color: var(--muted); font-size: 16px; }
-  .grads-track {
-    display: flex; gap: 18px; margin-top: 48px; overflow-x: auto;
-    scroll-snap-type: x mandatory; padding-bottom: 10px;
-    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  .grads-deck { display: flex; gap: 12px; height: 440px; margin-top: 48px; }
+  .deck-card {
+    position: relative; flex: 1 1 0; overflow: hidden; border-radius: 22px;
+    background: linear-gradient(172deg, #1d1d1d, #0e0e0e);
+    border: 1px solid rgba(255,255,255,.06); cursor: pointer;
+    transition: flex-grow .55s cubic-bezier(.25,.8,.25,1);
   }
-  .grads-track::-webkit-scrollbar { display: none; }
-  .grad-card {
-    flex: 0 0 292px; scroll-snap-align: start; text-decoration: none;
-    background: linear-gradient(172deg, #1e1e1e 0%, #121212 50%, #0c0c0c 100%);
-    border: 1px solid rgba(255,255,255,.06); border-radius: 24px; padding: 14px 14px 20px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
-    transition: transform .2s, border-color .2s;
+  .deck-card.is-open { flex-grow: 3.4; }
+  .deck-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .deck-card::after {
+    content: ''; position: absolute; inset: 0; transition: background .45s;
+    background: rgba(6,6,6,.55);
   }
-  .grad-card:hover { transform: translateY(-4px); border-color: rgba(255,90,31,.4); }
-  .grad-photo {
-    aspect-ratio: 1; border-radius: 16px; background: #191919;
-    display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.16);
-    overflow: hidden;
+  .deck-card.is-open::after { background: linear-gradient(180deg, rgba(6,6,6,0) 46%, rgba(6,6,6,.82) 100%); }
+  .deck-ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.14); }
+  .deck-ph svg { width: 74px; height: 74px; }
+  .deck-side {
+    position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+    writing-mode: vertical-rl; white-space: nowrap; z-index: 2;
+    font-family: 'Montserrat'; font-weight: 600; font-size: 14px; color: rgba(255,255,255,.85);
+    transition: opacity .3s;
   }
-  .grad-photo svg { width: 84px; height: 84px; }
-  .grad-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .grad-role { display: block; margin: 16px 4px 4px; font-family: 'Montserrat'; font-size: 12px; color: var(--orange-2); }
-  .grad-name { display: block; margin: 0 4px; font-family: 'Montserrat'; font-weight: 600; font-size: 18px; color: #fff; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+  .deck-card.is-open .deck-side { opacity: 0; }
+  .deck-info {
+    position: absolute; left: 20px; right: 20px; bottom: 18px; z-index: 2;
+    opacity: 0; transform: translateY(10px); transition: opacity .4s .18s, transform .4s .18s;
+  }
+  .deck-card.is-open .deck-info { opacity: 1; transform: none; }
+  .deck-role { display: block; font-family: 'Montserrat'; font-size: 12px; color: var(--orange-2); margin-bottom: 3px; }
+  .deck-nick { display: block; font-family: 'Montserrat'; font-weight: 600; font-size: 19px; color: #fff; white-space: nowrap; }
+  .deck-cta { display: inline-block; margin-top: 12px; padding: 9px 16px; border-radius: 999px; background: rgba(255,255,255,.14); backdrop-filter: blur(6px); font-family: 'Montserrat'; font-weight: 600; font-size: 12.5px; color: #fff; }
   @media (max-width: 900px) {
-    .grad-card { flex: 0 0 68vw; }
-    .grads-track { gap: 12px; margin-top: 30px; }
+    .grads-deck { height: 360px; gap: 8px; }
+    .deck-card.is-open { flex-grow: 4.4; }
+    .deck-side { font-size: 12px; top: 14px; }
+    .deck-nick { font-size: 15px; }
   }
 
   /* ── PRICING ── */
@@ -747,37 +757,37 @@
     <div class="sec-label rv">випускники</div>
     <h2 class="sec-title rv">Не віриш на слово?<span class="shift">запитай <span class="accent">у них</span></span></h2>
     <p class="grads-sub rv">Це студенти минулого потоку. Можеш написати будь-кому з них в Instagram і дізнатися враження з перших рук.</p>
-    <div class="grads-track rv">
-      <a class="grad-card" href="https://www.instagram.com/malenko._inna/" target="_blank" rel="noopener">
-        <div class="grad-photo"><img src="grad-malenko.jpg" alt="@malenko._inna" loading="lazy"></div>
-        <span class="grad-role">таргетолог</span>
-        <span class="grad-name">@malenko._inna</span>
-      </a>
-      <a class="grad-card" href="#" target="_blank" rel="noopener">
-        <div class="grad-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8.2" r="3.6"/><path d="M4.5 20c1.4-3.6 4.1-5.4 7.5-5.4s6.1 1.8 7.5 5.4"/></svg></div>
-        <span class="grad-role">таргетолог</span>
-        <span class="grad-name">@нік_студента</span>
-      </a>
-      <a class="grad-card" href="#" target="_blank" rel="noopener">
-        <div class="grad-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8.2" r="3.6"/><path d="M4.5 20c1.4-3.6 4.1-5.4 7.5-5.4s6.1 1.8 7.5 5.4"/></svg></div>
-        <span class="grad-role">таргетолог</span>
-        <span class="grad-name">@нік_студента</span>
-      </a>
-      <a class="grad-card" href="#" target="_blank" rel="noopener">
-        <div class="grad-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8.2" r="3.6"/><path d="M4.5 20c1.4-3.6 4.1-5.4 7.5-5.4s6.1 1.8 7.5 5.4"/></svg></div>
-        <span class="grad-role">таргетолог</span>
-        <span class="grad-name">@нік_студента</span>
-      </a>
-      <a class="grad-card" href="#" target="_blank" rel="noopener">
-        <div class="grad-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8.2" r="3.6"/><path d="M4.5 20c1.4-3.6 4.1-5.4 7.5-5.4s6.1 1.8 7.5 5.4"/></svg></div>
-        <span class="grad-role">таргетолог</span>
-        <span class="grad-name">@нік_студента</span>
-      </a>
-      <a class="grad-card" href="#" target="_blank" rel="noopener">
-        <div class="grad-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8.2" r="3.6"/><path d="M4.5 20c1.4-3.6 4.1-5.4 7.5-5.4s6.1 1.8 7.5 5.4"/></svg></div>
-        <span class="grad-role">таргетолог</span>
-        <span class="grad-name">@нік_студента</span>
-      </a>
+    <div class="grads-deck rv">
+      <div class="deck-card is-open" data-ig="https://www.instagram.com/malenko._inna/">
+        <img class="deck-photo" src="grad-malenko.jpg" alt="@malenko._inna" loading="lazy">
+        <span class="deck-side">@malenko._inna</span>
+        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@malenko._inna</span><span class="deck-cta">Instagram →</span></div>
+      </div>
+      <div class="deck-card">
+        <div class="deck-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8.2" r="3.6"/><path d="M4.5 20c1.4-3.6 4.1-5.4 7.5-5.4s6.1 1.8 7.5 5.4"/></svg></div>
+        <span class="deck-side">@нік_студента</span>
+        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@нік_студента</span><span class="deck-cta">Instagram →</span></div>
+      </div>
+      <div class="deck-card">
+        <div class="deck-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8.2" r="3.6"/><path d="M4.5 20c1.4-3.6 4.1-5.4 7.5-5.4s6.1 1.8 7.5 5.4"/></svg></div>
+        <span class="deck-side">@нік_студента</span>
+        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@нік_студента</span><span class="deck-cta">Instagram →</span></div>
+      </div>
+      <div class="deck-card">
+        <div class="deck-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8.2" r="3.6"/><path d="M4.5 20c1.4-3.6 4.1-5.4 7.5-5.4s6.1 1.8 7.5 5.4"/></svg></div>
+        <span class="deck-side">@нік_студента</span>
+        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@нік_студента</span><span class="deck-cta">Instagram →</span></div>
+      </div>
+      <div class="deck-card">
+        <div class="deck-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8.2" r="3.6"/><path d="M4.5 20c1.4-3.6 4.1-5.4 7.5-5.4s6.1 1.8 7.5 5.4"/></svg></div>
+        <span class="deck-side">@нік_студента</span>
+        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@нік_студента</span><span class="deck-cta">Instagram →</span></div>
+      </div>
+      <div class="deck-card">
+        <div class="deck-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8.2" r="3.6"/><path d="M4.5 20c1.4-3.6 4.1-5.4 7.5-5.4s6.1 1.8 7.5 5.4"/></svg></div>
+        <span class="deck-side">@нік_студента</span>
+        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@нік_студента</span><span class="deck-cta">Instagram →</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -874,6 +884,17 @@
   window.addEventListener('load', () => {
     setTimeout(() => document.querySelector('.btn-practice').classList.add('in'), 350);
     setTimeout(() => document.querySelector('.btn-book').classList.add('in'), 850);
+  });
+  document.querySelectorAll('.deck-card').forEach(card => {
+    const openIt = () => {
+      document.querySelectorAll('.deck-card.is-open').forEach(c => c.classList.remove('is-open'));
+      card.classList.add('is-open');
+    };
+    card.addEventListener('mouseenter', () => { if (window.matchMedia('(hover: hover)').matches) openIt(); });
+    card.addEventListener('click', () => {
+      if (!card.classList.contains('is-open')) { openIt(); return; }
+      if (card.dataset.ig) window.open(card.dataset.ig, '_blank');
+    });
   });
   const vStates = ['v3', 'v2', 'v1'];
   const vNames = { v3: 'фон + оффер', v2: 'плашки', v1: 'все в H1' };
