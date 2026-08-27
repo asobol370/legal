@@ -214,6 +214,7 @@
     .btn-book { width: 36.2vw; margin: -30.3vw 0 0 42.7vw; }
     .scroll-cue { display: none !important; }
     section { padding: 30px 0 44px; }
+    .cta-footer { margin-top: 60px; align-items: flex-start; flex-direction: column; }
     .glow { display: none; }
   }
 
@@ -250,16 +251,17 @@
     50% { opacity: 1; transform: translateY(2.5px); }
   }
 
-  footer { border-top: 1px solid rgba(255,255,255,.06); padding: 42px 0 34px; position: relative; z-index: 1; }
-  .foot-in { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .cta-footer { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-top: 110px; }
   .foot-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill.grad { background: var(--grad); border: none; color: #140800; font-weight: 600; }
+  .pill.grad:hover { color: #140800; box-shadow: 0 8px 26px rgba(255,90,31,.35); }
   .pill {
     padding: 11px 22px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px;
     color: #fff; font-family: 'Montserrat'; font-weight: 500; font-size: 13.5px;
     text-decoration: none; transition: border-color .2s, color .2s;
   }
   .pill:hover { border-color: rgba(255,90,31,.7); color: var(--orange-2); }
-  .foot-fop { margin-top: 30px; font-family: 'Montserrat'; font-size: 12px; color: rgba(255,255,255,.35); }
+  .foot-fop { font-family: 'Montserrat'; font-size: 12px; color: rgba(255,255,255,.35); }
 
   .variant-toggle {
     position: fixed; left: 18px; bottom: 18px; z-index: 99;
@@ -862,12 +864,17 @@
     <h2 class="sec-title rv">Готовий<span class="shift"><span class="accent">зростати?</span></span></h2>
     <p class="cta-sub rv">Напиши мені в дірект — відповім на питання і забронюю за тобою місце. Або одразу заповнюй анкету предзапису, і я звʼяжуся з тобою.</p>
     <div class="cta-row rv">
-      <a class="btn" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">Написати в Telegram</a>
+      <a class="btn-ghost" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">Задати питання</a>
       <a class="btn-ghost" href="https://docs.google.com/forms/d/e/1FAIpQLSdVNuRe4ruRqo-ITWjO85CTbOP9bw1Z1Osl1V2YxF3no9a6iw/viewform" target="_blank" rel="noopener">Анкета предзапису</a>
     </div>
-    <div class="cta-contacts rv">
-      <a href="https://t.me/vlad_bo12" target="_blank" rel="noopener">TG — @vlad_bo12</a>
-      <a href="https://www.instagram.com/vladbogatyrev_/" target="_blank" rel="noopener">Inst — @vladbogatyrev_</a>
+    <div class="cta-footer rv">
+      <div class="foot-pills">
+        <a class="pill grad" href="https://www.instagram.com/vladbogatyrev_/" target="_blank" rel="noopener">instagram</a>
+        <a class="pill grad" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">telegram</a>
+        <a class="pill" href="https://bogatyrev-marketing.notion.site/3c9c4e7bc24e813e9a4dcac7b4eb53a1" target="_blank" rel="noopener">конфіденційність</a>
+        <a class="pill" href="https://bogatyrev-marketing.notion.site/3c9c4e7bc24e811bacbcfac3a1d4a2b2" target="_blank" rel="noopener">оферта</a>
+      </div>
+      <div class="foot-fop">ФОП Богатирьова Наталія Вʼячеславівна</div>
     </div>
   </div>
 </section>
@@ -897,17 +904,7 @@
     });
   });
 </script>
-<footer>
-  <div class="foot-in">
-    <div class="foot-pills">
-      <a class="pill" href="https://www.instagram.com/vladbogatyrev_/" target="_blank" rel="noopener">instagram</a>
-      <a class="pill" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">telegram</a>
-      <a class="pill" href="https://bogatyrev-marketing.notion.site/3c9c4e7bc24e813e9a4dcac7b4eb53a1" target="_blank" rel="noopener">конфіденційність</a>
-      <a class="pill" href="https://bogatyrev-marketing.notion.site/3c9c4e7bc24e811bacbcfac3a1d4a2b2" target="_blank" rel="noopener">оферта</a>
-    </div>
-    <div class="foot-fop">ФОП Богатирьова Наталія Вʼячеславівна</div>
-  </div>
-</footer>
+
 
 <button class="variant-toggle" id="vtoggle" style="display:none">Варіант: фон + оффер · натисни для наступного</button>
 <script>
