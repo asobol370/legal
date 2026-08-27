@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Точка G 2.0 — наставництво з Google Ads | Bohatyrov Marketing</title>
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -491,11 +491,13 @@
   .deck-info {
     position: absolute; left: 20px; right: 20px; bottom: 18px; z-index: 2;
     opacity: 0; transform: translateY(10px); transition: opacity .4s .18s, transform .4s .18s;
+    pointer-events: none;
   }
+  .deck-card.is-open .deck-info { pointer-events: auto; }
   .deck-card.is-open .deck-info { opacity: 1; transform: none; }
   .deck-role { display: block; font-family: 'Montserrat'; font-size: 12px; color: var(--orange-2); margin-bottom: 3px; }
   .deck-nick { display: block; font-family: 'Montserrat'; font-weight: 600; font-size: 19px; color: #fff; white-space: nowrap; }
-  .deck-cta { display: inline-block; margin-top: 12px; padding: 9px 16px; border-radius: 999px; background: rgba(255,255,255,.14); backdrop-filter: blur(6px); font-family: 'Montserrat'; font-weight: 600; font-size: 12.5px; color: #fff; }
+  .deck-cta { display: inline-block; text-decoration: none; margin-top: 12px; padding: 9px 16px; border-radius: 999px; background: rgba(255,255,255,.14); backdrop-filter: blur(6px); font-family: 'Montserrat'; font-weight: 600; font-size: 12.5px; color: #fff; }
   @media (max-width: 900px) {
     .grads-deck {
       height: 360px; gap: 8px; overflow-x: auto; scrollbar-width: none;
@@ -766,32 +768,32 @@
       <div class="deck-card is-open" data-ig="https://www.instagram.com/malenko._inna/">
         <img class="deck-photo" src="grad-malenko.jpg?v=3" alt="@malenko._inna" loading="lazy">
         <span class="deck-side">@malenko._inna</span>
-        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@malenko._inna</span><span class="deck-cta">Instagram →</span></div>
+        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@malenko._inna</span><a class="deck-cta" href="https://www.instagram.com/malenko._inna/" target="_blank" rel="noopener">Instagram →</a></div>
       </div>
       <div class="deck-card" data-ig="https://www.instagram.com/hanna.ferents/">
         <img class="deck-photo" src="grad-ferents.jpg" alt="@hanna.ferents" loading="lazy">
         <span class="deck-side">@hanna.ferents</span>
-        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@hanna.ferents</span><span class="deck-cta">Instagram →</span></div>
+        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@hanna.ferents</span><a class="deck-cta" href="https://www.instagram.com/hanna.ferents/" target="_blank" rel="noopener">Instagram →</a></div>
       </div>
       <div class="deck-card" data-ig="https://www.instagram.com/viktoriia.batovska/">
         <img class="deck-photo" src="grad-batovska.jpg" alt="@viktoriia.batovska" loading="lazy">
         <span class="deck-side">@viktoriia.batovska</span>
-        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@viktoriia.batovska</span><span class="deck-cta">Instagram →</span></div>
+        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@viktoriia.batovska</span><a class="deck-cta" href="https://www.instagram.com/viktoriia.batovska/" target="_blank" rel="noopener">Instagram →</a></div>
       </div>
       <div class="deck-card" data-ig="https://www.instagram.com/target_laktionova/">
         <img class="deck-photo" src="grad-laktionova.jpg" alt="@target_laktionova" loading="lazy">
         <span class="deck-side">@target_laktionova</span>
-        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@target_laktionova</span><span class="deck-cta">Instagram →</span></div>
+        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@target_laktionova</span><a class="deck-cta" href="https://www.instagram.com/target_laktionova/" target="_blank" rel="noopener">Instagram →</a></div>
       </div>
       <div class="deck-card" data-ig="https://www.instagram.com/maliutatania/">
         <img class="deck-photo" src="grad-maliutatania.jpg" alt="@maliutatania" loading="lazy">
         <span class="deck-side">@maliutatania</span>
-        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@maliutatania</span><span class="deck-cta">Instagram →</span></div>
+        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@maliutatania</span><a class="deck-cta" href="https://www.instagram.com/maliutatania/" target="_blank" rel="noopener">Instagram →</a></div>
       </div>
       <div class="deck-card" data-ig="https://www.instagram.com/alina.silka/">
         <img class="deck-photo" src="grad-silka.jpg" alt="@alina.silka" loading="lazy">
         <span class="deck-side">@alina.silka</span>
-        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@alina.silka</span><span class="deck-cta">Instagram →</span></div>
+        <div class="deck-info"><span class="deck-role">таргетолог</span><span class="deck-nick">@alina.silka</span><a class="deck-cta" href="https://www.instagram.com/alina.silka/" target="_blank" rel="noopener">Instagram →</a></div>
       </div>
     </div>
   </div>
@@ -896,9 +898,9 @@
       card.classList.add('is-open');
     };
     card.addEventListener('mouseenter', () => { if (window.matchMedia('(hover: hover)').matches) openIt(); });
-    card.addEventListener('click', () => {
-      if (!card.classList.contains('is-open')) { openIt(); return; }
-      if (card.dataset.ig) window.open(card.dataset.ig, '_blank');
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.deck-cta')) return;
+      if (!card.classList.contains('is-open')) openIt();
     });
   });
   const vStates = ['v3', 'v2', 'v1'];
