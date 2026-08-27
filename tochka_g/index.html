@@ -627,6 +627,15 @@
   .wp-badge { flex-shrink: 0; width: 66px; height: 66px; padding: 7px; background: #fff; border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,.35); display: flex; align-items: center; justify-content: center; }
   .wp-badge img { width: 100%; height: 100%; display: block; }
   @media (max-width: 900px) { .wp-badge { width: 56px; height: 56px; padding: 6px; border-radius: 10px; } }
+
+  /* 3-tier pricing */
+  .price-grid { grid-template-columns: 1fr 1.12fr 1fr; gap: 18px; }
+  .price-card { padding: 36px 30px; }
+  .price-now { font-size: 44px; }
+  .price-card.vip { border: 1.5px solid rgba(255,255,255,.22); background: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.015) 45%), var(--surface); }
+  .seats.pop { background: var(--grad); color: #140800; animation: none; }
+  .upgrade-note { font-size: 12.5px; color: var(--soft); margin: -12px 0 22px; line-height: 1.5; }
+  @media (max-width: 1080px) { .price-grid { grid-template-columns: 1fr; max-width: 560px; margin-left: auto; margin-right: auto; } }
 </style>
 </head>
 <body class="v3">
@@ -720,7 +729,7 @@
         <div class="wp-caption"><div class="wp-left"><span class="wp-eyebrow">автор навчання</span>Влад Богатирьов<span class="wp-creds">Digital-маркетолог</span></div><a class="wp-badge" href="https://www.google.com/partners/agency?id=2300223752" target="_blank" rel="noopener" title="Google Partner"><img src="partner-badge.svg" alt="Google Partner"></a></div>
       </div>
       <div class="why-card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="13" height="12" rx="3"/><path d="m15.5 10.2 6-3.7v11l-6-3.7"/></svg></div><h3>Живі зустрічі<br>щотижня</h3><p>Розбираємо твою стратегію, твої запуски, ситуації та роботу з клієнтами — на ефірі, з групою.</p></div>
-      <div class="why-card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13.5a8 8 0 1 1 16 0"/><rect x="2.5" y="13.5" width="4.2" height="6" rx="2.1"/><rect x="17.3" y="13.5" width="4.2" height="6" rx="2.1"/></svg></div><h3>Супровід<br>після курсу</h3><p>Коли візьмеш першого клієнта і запанікуєш — я поряд. +2-3 місяці підтримки.</p></div>
+      <div class="why-card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13.5a8 8 0 1 1 16 0"/><rect x="2.5" y="13.5" width="4.2" height="6" rx="2.1"/><rect x="17.3" y="13.5" width="4.2" height="6" rx="2.1"/></svg></div><h3>Супровід<br>після курсу</h3><p>Коли візьмеш першого клієнта і запанікуєш — я поряд. До 3-х місяців підтримки.</p></div>
       <div class="why-card hl rv"><div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 8.2 7.6 12 12 5l4.4 7L21 8.2l-1.7 10.6H4.7L3 8.2Z"/><rect x="4.7" y="20" width="14.6" height="1.6" rx=".8"/></svg></div><h3>Кейс<br>у портфоліо</h3><p>Реальні цифри і висновки з практики на діючих проєктах — вже під час навчання.</p></div>
     </div>
     <div class="vs-duel rv">
@@ -859,37 +868,46 @@
     <h2 class="sec-title rv">Обери свій<span class="shift"><span class="accent">формат</span></span></h2>
     <div class="price-grid">
       <div class="price-card rv">
-        <div class="price-head"><div class="price-name">Груповий</div><span class="seats">3 з 7 місць</span></div>
-        <div class="price-val"><span class="price-old">$999</span><span class="price-now">$699</span></div>
+        <div class="price-head"><div class="price-name">Старт</div><span class="seats">без практики</span></div>
+        <div class="price-val"><span class="price-now">$699</span></div>
         <div class="price-split">або $233 × 3 платежі</div>
         <ul class="feat">
-          <li><b>Доступ до всіх модулів назавжди</b></li>
-          <li>Матеріали, гайди, чек-листи під кожен модуль</li>
-          <li>Закритий чат учасників</li>
-          <li>Живі практичні лекції 1-2 рази на тиждень</li>
-          <li>Домашні завдання з фідбеком</li>
-          <li>Практика на реальних проєктах + <b>сертифікат</b></li>
-          <li>Пріоритет в передачі клієнтів на Google і Meta Ads</li>
-          <li>Безкоштовний доступ до майбутніх оновлень</li>
-          <li><b>+2 місяці супроводу</b> після навчання</li>
+          <li><b>10 тижнів теорії:</b> усі уроки в записі</li>
+          <li>Щотижневі групові ефіри з розборами</li>
+          <li>Домашні завдання з перевіркою</li>
+          <li>Закритий чат групи</li>
+          <li><b>+1 місяць супроводу</b> після навчання</li>
         </ul>
+        <div class="upgrade-note">Можна перейти на «Стандарт», доплативши різницю — до старту практичного блоку</div>
         <a class="btn-ghost" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">Забронювати місце</a>
       </div>
       <div class="price-card premium rv">
-        <div class="price-head"><div class="price-name">Преміум</div><span class="seats hot">1 з 2 місць</span></div>
-        <div class="price-val"><span class="price-now">$1149</span></div>
-        <div class="price-split">або $383 × 3 платежі</div>
+        <div class="price-head"><div class="price-name">Стандарт</div><span class="seats pop">найпопулярніший</span></div>
+        <div class="price-val"><span class="price-now">$999</span></div>
+        <div class="price-split">або $333 × 3 платежі</div>
         <ul class="feat">
-          <li>Все, що в тарифі «Груповий», плюс:</li>
-          <li class="star"><b>Індивідуальні зізвони та чат зі мною</b></li>
-          <li class="star"><b>Допомога в роботі над твоїм проєктом</b></li>
-          <li class="star">Пріоритет в передачі клієнтів на Google Ads</li>
-          <li class="star">Доступ назавжди + всі майбутні оновлення</li>
+          <li>Все, що в тарифі «Старт», плюс:</li>
+          <li class="star"><b>Повні 14 тижнів:</b> теорія + 4 тижні практики</li>
+          <li class="star"><b>Практика на 2 реальних проєктах</b> — e-commerce і лідген</li>
+          <li class="star">2 кейси в портфоліо + захист кейсу перед групою</li>
           <li class="star"><b>+3 місяці супроводу</b> після навчання</li>
+        </ul>
+        <a class="btn" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">Забронювати місце →</a>
+      </div>
+      <div class="price-card vip rv">
+        <div class="price-head"><div class="price-name">Преміум</div><span class="seats hot">1 з 2 місць</span></div>
+        <div class="price-val"><span class="price-now">$1499</span></div>
+        <div class="price-split">або $500 × 3 платежі</div>
+        <ul class="feat">
+          <li class="star"><b>Індивідуальний формат:</b> особисті зустрічі зі мною щотижня</li>
+          <li class="star"><b>Старт у зручний для тебе час</b>, свій темп</li>
+          <li class="star">Практика на реальних проєктах</li>
+          <li class="star">Групові ефіри — за бажанням</li>
+          <li class="star">Пріоритетна підтримка + <b>3 місяці супроводу</b></li>
         </ul>
         <div class="guarantee"><b>Гарантія результату:</b> якщо проходиш програму й виконуєш завдання, але не береш перший проєкт або не виходиш на дохід $500+/міс — працюю з тобою далі, поки це не станеться.</div>
         <div style="height:26px"></div>
-        <a class="btn" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">Забронювати місце →</a>
+        <a class="btn" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">Забронювати місце</a>
       </div>
     </div>
     <p class="prepay-note rv">Місце бронюється по передоплаті <b>3000 грн</b>, яка включається в загальну вартість навчання</p>
