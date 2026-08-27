@@ -1019,7 +1019,14 @@
       }
       t.classList.add('on'); io.unobserve(t); }
   }); }, { threshold: 0.12 });
-  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  const ioProg = new IntersectionObserver(es => { let k = 0; es.forEach(e => {
+    if (e.isIntersecting) {
+      const t = e.target;
+      t.style.transitionDelay = (k++ * 80) + 'ms';
+      t.addEventListener('transitionend', () => { t.style.transitionDelay = ''; }, { once: true });
+      t.classList.add('on'); ioProg.unobserve(t); }
+  }); }, { threshold: 0.1, rootMargin: '0px 0px -14% 0px' });
+  document.querySelectorAll('.rv').forEach(el => (el.classList.contains('prog-item') ? ioProg : io).observe(el));
 
   // program accordion
   document.querySelectorAll('.prog-item').forEach(item => {
