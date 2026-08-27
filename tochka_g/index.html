@@ -648,9 +648,12 @@
 
   /* faq */
   .faq-item .prog-head { grid-template-columns: 1fr auto; }
-  .faq-item .prog-title { font-size: clamp(15px, 1.5vw, 18px); }
+  .faq-item .prog-title { font-size: clamp(15px, 1.5vw, 18px); color: var(--muted); font-weight: 500; }
   .faq-item .prog-body-in { padding-left: 18px; max-width: 860px; }
-  .faq-more { margin-top: 46px; display: flex; align-items: center; justify-content: center; gap: 24px; color: var(--muted); font-size: 16px; flex-wrap: wrap; text-align: center; }
+  .prog-item.hl-ai { background: linear-gradient(92deg, rgba(255,90,31,.16), rgba(255,90,31,.04) 70%); }
+  .prog-item.hl-ai:hover { background: linear-gradient(92deg, rgba(255,90,31,.2), rgba(255,90,31,.06) 70%); }
+  .prog-item.hl-ai .prog-title { color: var(--orange-2); }
+  .prog-item.hl-ai .prog-num { color: var(--orange); -webkit-text-stroke: 1.3px transparent; }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Я ніколи не працював з Google Ads. Мені підійде?", "acceptedAnswer": {"@type": "Answer", "text": "Так — програма побудована з нуля: від структури акаунта до стратегій запуску. Але це наставництво для тих, хто вже в digital: таргетолог, SMM-спеціаліст чи маркетолог, який хоче додати Google Ads до своїх послуг. З повного нуля, без досвіду в рекламі взагалі — буде складно."}}, {"@type": "Question", "name": "Скільки часу потрібно виділяти на тиждень?", "acceptedAnswer": {"@type": "Answer", "text": "Орієнтовно 5-7 годин: уроки в записі, домашнє завдання і щотижневий ефір. Уроки дивишся коли зручно, ефір — за розкладом групи."}}, {"@type": "Question", "name": "Що як я пропущу ефір?", "acceptedAnswer": {"@type": "Answer", "text": "Усі ефіри записуються. Але розбори твоїх завдань і запусків проходять наживо — тому краще бути: група маленька, час приділяється кожному."}}, {"@type": "Question", "name": "Як виглядає практика?", "acceptedAnswer": {"@type": "Answer", "text": "На тарифах Стандарт і Преміум — 4 тижні практики на двох реальних проєктах з реальними бюджетами: e-commerce і лідген. Працюєш з живим трафіком: від аналізу ніші до захисту кейсу перед групою."}}, {"@type": "Question", "name": "Яка різниця між тарифами, який обрати?", "acceptedAnswer": {"@type": "Answer", "text": "Старт — уся програма, ефіри й перевірка завдань, але без практики на проєктах. Стандарт — повний формат: + 4 тижні практики, кейс у портфоліо і сертифікат. Преміум — індивідуальна робота зі мною, старт у зручний час. Якщо сумніваєшся — напиши мені, допоможу обрати під тебе."}}, {"@type": "Question", "name": "Чи можна оплатити частинами?", "acceptedAnswer": {"@type": "Answer", "text": "Так, кожен тариф можна розбити на частини — від $233/міс. Місце бронюється передоплатою 4500 грн, яка входить у вартість навчання."}}, {"@type": "Question", "name": "Чи допоможеш знайти перших клієнтів?", "acceptedAnswer": {"@type": "Answer", "text": "Навчання побудоване так, щоб наприкінці в тебе були кейс, впевненість і план дій по перших клієнтах. У супроводі після курсу розбираємо твої реальні перемовини й запуски. За тебе клієнтів не приведу — але доведу тебе до стану, коли ти береш їх сам."}}, {"@type": "Question", "name": "Чи є допомога після навчання?", "acceptedAnswer": {"@type": "Answer", "text": "Так, супровід: питання по перших клієнтах, розбори запусків, складні ситуації. На Старті — 1 місяць, на Стандарті й Преміумі — 3 місяці. Навчання закінчиться — підтримка ні."}}]}</script>
 </head>
@@ -802,7 +805,7 @@
         <div class="prog-body"><div class="prog-body-in">Аудиторії, Customer Match, Display, YouTube, Demand Gen, статичний і динамічний ремаркетинг. <b>Результат:</b> будуєш повну воронку — ремаркетинг дає одні з найдешевших лідів.</div></div></div>
       <div class="prog-item"><div class="prog-head"><div class="prog-num">10</div><div class="prog-title">Робота з клієнтом</div><div class="prog-count">5 уроків</div><div class="prog-arrow">+</div></div>
         <div class="prog-body"><div class="prog-body-in">Pricing, онбординг, шаблони звітів, скрипти складних розмов, передача акаунта і кейс. <b>Результат:</b> упаковуєш послуги під чек $600+/міс — Media Buyer партнер, якому довіряють бюджети.</div></div></div>
-      <div class="prog-item"><div class="prog-head"><div class="prog-num">11</div><div class="prog-title">AI і автоматизація</div><div class="prog-count">9 уроків</div><div class="prog-arrow">+</div></div>
+      <div class="prog-item hl-ai"><div class="prog-head"><div class="prog-num">11</div><div class="prog-title">AI і автоматизація</div><div class="prog-count">9 уроків</div><div class="prog-arrow">+</div></div>
         <div class="prog-body"><div class="prog-body-in">AI-стек 2026: Claude, ChatGPT, Apps Script. SQR-аналіз з відправкою в Telegram, research конкурентів через Claude Code, автозвіти в Sheets, Change Log в Notion, AI-креативи. <b>Результат:</b> економиш 10+ годин на тиждень — береш у 2-3 рази більше клієнтів без втрати якості.</div></div></div>
     </div>
   </div>
@@ -960,7 +963,6 @@
       <div class="prog-item faq-item"><div class="prog-head"><div class="prog-title">Чи є допомога після навчання?</div><div class="prog-arrow">+</div></div>
         <div class="prog-body"><div class="prog-body-in">Так, супровід: питання по перших клієнтах, розбори запусків, складні ситуації. На Старті — 1 місяць, на Стандарті й Преміумі — 3 місяці. Навчання закінчиться — підтримка ні.</div></div></div>
     </div>
-    <div class="faq-more rv">Залишились питання?<a class="btn" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">Задати питання</a></div>
   </div>
 </section>
 
