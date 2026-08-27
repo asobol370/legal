@@ -658,6 +658,7 @@
   a.deck-nick { text-decoration: none; }
   .faq-item .prog-body-in { color: var(--text); }
   /* mobile sticky-stack: кожен наступний блок накриває попередній (і фото теж) */
+  .why-photo::after { content: ''; position: absolute; inset: 0; background: #060606; opacity: var(--wpdim, 0); pointer-events: none; z-index: 3; }
   @media (max-width: 900px) {
     .why-grid > :nth-child(1) { z-index: 1; }
     .why-grid > :nth-child(2) { z-index: 2; }
@@ -1077,6 +1078,25 @@
     if (vStates[vIdx] !== 'v2') document.body.classList.add(vStates[vIdx]);
     this.textContent = 'Варіант: ' + vNames[vStates[vIdx]] + ' · натисни для наступного';
   });
+</script>
+<script>
+(() => {
+  const ph = document.querySelector('.why-photo');
+  if (!ph) return;
+  const next = ph.nextElementSibling;
+  const mq = window.matchMedia('(max-width: 900px)');
+  const upd = () => {
+    if (!mq.matches || !next) { ph.style.setProperty('--wpdim', 0); return; }
+    const pr = ph.getBoundingClientRect();
+    const nr = next.getBoundingClientRect();
+    const start = pr.bottom;
+    const end = pr.top + 90;
+    const p = Math.min(1, Math.max(0, (start - nr.top) / Math.max(1, start - end)));
+    ph.style.setProperty('--wpdim', (p * 0.96).toFixed(3));
+  };
+  ['scroll', 'resize', 'orientationchange'].forEach(e => addEventListener(e, upd, {passive: true}));
+  upd();
+})();
 </script>
 </body>
 </html>
