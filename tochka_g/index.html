@@ -253,13 +253,16 @@
 
   .cta-footer { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-top: 110px; }
   .foot-pills { display: flex; gap: 10px; flex-wrap: wrap; }
-  .pill.grad { background: var(--grad); border: none; color: #140800; font-weight: 600; }
+  .pill.grad { background: var(--grad); border: 1px solid transparent; color: #140800; font-weight: 600; }
   .pill.grad:hover { color: #140800; box-shadow: 0 8px 26px rgba(255,90,31,.35); }
   .pill {
-    padding: 11px 22px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px;
-    color: #fff; font-family: 'Montserrat'; font-weight: 500; font-size: 13.5px;
-    text-decoration: none; transition: border-color .2s, color .2s;
+    padding: 13px 26px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px;
+    color: #fff; font-family: 'Montserrat'; font-weight: 500; font-size: 13.5px; line-height: 1;
+    text-decoration: none; transition: border-color .2s, color .2s, opacity .2s;
+    display: inline-flex; align-items: center;
   }
+  .pill.dim { border-color: rgba(255,255,255,.13); color: rgba(255,255,255,.45); }
+  .pill.dim:hover { border-color: rgba(255,255,255,.4); color: #fff; }
   .pill:hover { border-color: rgba(255,90,31,.7); color: var(--orange-2); }
   .foot-fop { font-family: 'Montserrat'; font-size: 12px; color: rgba(255,255,255,.35); }
 
@@ -558,8 +561,11 @@
   /* ── CTA ── */
   .cta { overflow: hidden; text-align: left; padding: 150px 0 130px; }
   .cta .sec-title { font-size: clamp(40px, 7vw, 92px); }
-  .cta-sub { color: var(--muted); max-width: 520px; font-size: 16.5px; margin: 30px 0 44px; }
+  .cta-sub { color: rgba(245,242,238,.8); max-width: 600px; font-size: 19.5px; line-height: 1.6; margin: 32px 0 46px; }
   .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  @media (min-width: 901px) {
+    .cta .cta-row { position: absolute; right: 0; top: 158px; }
+  }
   .cta-contacts { margin-top: 46px; display: flex; gap: 28px; flex-wrap: wrap; }
   .cta-contacts a { color: var(--muted); text-decoration: none; font-size: 14.5px; display: flex; gap: 8px; align-items: center; transition: color .15s; }
   .cta-contacts a:hover { color: var(--orange-2); }
@@ -871,8 +877,8 @@
       <div class="foot-pills">
         <a class="pill grad" href="https://www.instagram.com/vladbogatyrev_/" target="_blank" rel="noopener">instagram</a>
         <a class="pill grad" href="https://t.me/vlad_bo12" target="_blank" rel="noopener">telegram</a>
-        <a class="pill" href="https://bogatyrev-marketing.notion.site/3c9c4e7bc24e813e9a4dcac7b4eb53a1" target="_blank" rel="noopener">конфіденційність</a>
-        <a class="pill" href="https://bogatyrev-marketing.notion.site/3c9c4e7bc24e811bacbcfac3a1d4a2b2" target="_blank" rel="noopener">оферта</a>
+        <a class="pill dim" href="https://bogatyrev-marketing.notion.site/3c9c4e7bc24e813e9a4dcac7b4eb53a1" target="_blank" rel="noopener">конфіденційність</a>
+        <a class="pill dim" href="https://bogatyrev-marketing.notion.site/3c9c4e7bc24e811bacbcfac3a1d4a2b2" target="_blank" rel="noopener">оферта</a>
       </div>
       <div class="foot-fop">ФОП Богатирьова Наталія Вʼячеславівна</div>
     </div>
