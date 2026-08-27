@@ -946,6 +946,27 @@
       if (!card.classList.contains('is-open')) openIt();
     });
   });
+  (() => {
+    const deck = document.querySelector('.grads-deck');
+    if (!deck) return;
+    const cards = Array.from(deck.querySelectorAll('.deck-card'));
+    let last = 0, visible = false;
+    const mark = () => { last = Date.now(); };
+    ['mousemove', 'mouseenter', 'touchstart', 'click', 'scroll'].forEach(ev =>
+      deck.addEventListener(ev, mark, { passive: true }));
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; }, { threshold: .55 }).observe(deck);
+    setInterval(() => {
+      if (!visible || Date.now() - last < 1300) return;
+      const i = cards.findIndex(c => c.classList.contains('is-open'));
+      const next = cards[(i + 1) % cards.length];
+      cards.forEach(c => c.classList.remove('is-open'));
+      next.classList.add('is-open');
+      if (deck.scrollWidth > deck.clientWidth + 4) {
+        const target = next.offsetLeft - (deck.clientWidth - next.getBoundingClientRect().width) / 2;
+        deck.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+      }
+    }, 2000);
+  })();
   const vStates = ['v3', 'v2', 'v1'];
   const vNames = { v3: 'фон + оффер', v2: 'плашки', v1: 'все в H1' };
   let vIdx = 0;
